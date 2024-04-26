@@ -27,8 +27,8 @@ public class Transaction {
     @ColumnInfo(name = "transaction_type")
     public String transactionType;
 
-    public Transaction(int budgetID, int categoryId, double amount, Date date, String description, String transactionType) {
-        this.id = budgetID;
+    public Transaction(int id, int categoryId, double amount, Date date, String description, String transactionType) {
+        this.id = id;
         this.categoryId = categoryId;
         this.amount = amount;
         this.date = date;

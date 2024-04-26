@@ -12,8 +12,8 @@ public class Category {
     @ColumnInfo(name = "name")
     public String name;
 
-    public Category(int categoryID, String name) {
-        this.id = categoryID;
+    public Category(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 

@@ -21,8 +21,8 @@ public class Budget {
     @ColumnInfo(name = "end_date")
     public Date endDate;
 
-    public Budget(int budgetID, int categoryId, double amount, Date startDate, Date endDate) {
-        this.id = budgetID;
+    public Budget(int id, int categoryId, double amount, Date startDate, Date endDate) {
+        this.id = id;
         this.categoryId = categoryId;
         this.amount = amount;
         this.startDate = startDate;

@@ -23,10 +23,10 @@ public class SavingsGoal {
     @ColumnInfo(name = "name")
     public String name;
 
-    public SavingsGoal(int goalID, double target, double current, Date targetDate, String name) {
-        this.id = goalID;
-        this.targetAmount = target;
-        this.currentAmount = current;
+    public SavingsGoal(int id, double targetAmount, double currentAmount, Date targetDate, String name) {
+        this.id = id;
+        this.targetAmount = targetAmount;
+        this.currentAmount = currentAmount;
         this.targetDate = targetDate;
         this.name = name;
     }
