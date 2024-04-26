@@ -1,0 +1,190 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="@color/black"
+    android:clickable="true"
+    android:focusable="true">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewGraph"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:elevation="10dp"
+        >
+
+
+        <!-- This is the code for the card at the top-->
+        <LinearLayout
+            android:id="@+id/pieChartView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:weightSum="2">
+
+
+            <!--This is the pie chart code-->
+
+            <org.eazegraph.lib.charts.PieChart
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/piechart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+
+                />
+
+            <!-- This is the code for the right hand side of the card at the top-->
+            <LinearLayout
+                android:id="@+id/orangeLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:background="@color/orange_background"
+                android:gravity="center_vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp">
+
+                    <!--View to display the black color icon (can always be adjusted later)-->
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/BudgetSpent"/>
+
+                    <!--Text view to display Amount Spent-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="5dp"
+                        android:text="Amount Spent"
+                        android:textColor="@color/BudgetSpent"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+                <!--Linear layout to display Budget Left-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="15dp">
+
+                    <!--View to display the orange color icon (can always be adjusted later-->
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/BudgetLeft"/>
+
+                    <!--Text view to Budget Left text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Budget Left"
+                        android:textColor="@color/BudgetSpent"
+                        android:textStyle="bold"
+                        android:paddingLeft="5dp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/lowerCard"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:background="@color/testcolor2"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Click me!"
+                android:textSize="20sp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/lowerCard2"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:background="@color/testcolor"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Click me!"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/lowerCard3"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:background="@color/testcolor"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Click me!"
+                android:textSize="20sp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/lowerCard4"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:background="@color/testcolor2"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Click me!"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</LinearLayout>

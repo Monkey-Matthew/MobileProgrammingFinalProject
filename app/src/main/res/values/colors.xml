@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#FF5722</color>
+    <color name="testcolor">#C45D3D</color>
+    <color name="testcolor2">#DA7D61</color>
+
+    <color name="BudgetLeft">#FF5722</color>
+    <color name="BudgetSpent">#000000</color>
+    <color name="orange_background">#D6572F</color>
+
+    <color name="color_one">#fb7268</color>
+    <color name="color_white">#ededf2</color>
+    <color name="color_two">#E3E0E0</color>
+
+</resources>
