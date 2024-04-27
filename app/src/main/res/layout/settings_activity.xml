@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/black">
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/text_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/obised"
+        android:text="BudgetBuddy"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Welcome Message -->
+    <TextView
+        android:id="@+id/text_welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Welcome, User!"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_below="@id/text_app_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Change Spend Budget Button -->
+    <Button
+        android:id="@+id/changeBudgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Your Spend Budget"
+        android:layout_below="@id/text_welcome_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Change Save Goal Button -->
+    <Button
+        android:id="@+id/button_change_save_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Your Save Goal"
+        android:layout_below="@id/changeBudgetButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Describe Saving Currently Button -->
+    <Button
+        android:id="@+id/button_describe_saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How Would You Describe Your Saving Currently?"
+        android:layout_below="@id/button_change_save_goal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Change Automatic Savings Account Button -->
+    <Button
+        android:id="@+id/button_change_auto_savings_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Your Automatic Savings Account"
+        android:layout_below="@id/button_describe_saving"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Back" />
+
+</RelativeLayout>

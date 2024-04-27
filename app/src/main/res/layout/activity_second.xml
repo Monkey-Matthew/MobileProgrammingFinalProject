@@ -186,5 +186,15 @@
 
     </TableLayout>
 
+    <Button
+        android:id="@+id/bottomRightButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="20dp"
+        android:text="Settings" />
+
 
 </LinearLayout>
