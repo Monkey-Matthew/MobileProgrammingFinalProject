@@ -49,10 +49,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //Grabs the id for the pieChart so we can update how it looks.
-        pieChart = findViewById(R.id.piechart);
-        savings1pieChart = findViewById(R.id.savings1piechart);
-        savings2pieChart = findViewById(R.id.savings2piechart);
+        //This references the pieChartLayout so that we can have the layout act like a button.
+        LinearLayout settings1PieChartLayout = findViewById(R.id.savings1pieChartView);
+
+        settings1PieChartLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, Savings1Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        //This references the pieChartLayout so that we can have the layout act like a button.
+        LinearLayout settings2PieChartLayout = findViewById(R.id.savings2pieChartView);
+
+        settings2PieChartLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, Savings2Activity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         // Find the TextView by its ID
         TextView textView = findViewById(R.id.addStatementButton);
@@ -76,6 +95,11 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
             }
         });
+
+        //Grabs the id for the pieChart so we can update how it looks.
+        pieChart = findViewById(R.id.piechart);
+        savings1pieChart = findViewById(R.id.savings1piechart);
+        savings2pieChart = findViewById(R.id.savings2piechart);
 
         //Calls to setData for the pie chart.
         setData();
