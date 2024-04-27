@@ -156,4 +156,13 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_apply_changes"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="230dp"
+        android:text="Back" />
+
 </LinearLayout>

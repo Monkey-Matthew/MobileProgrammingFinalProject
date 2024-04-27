@@ -14,5 +14,13 @@ public class InputSpending extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_spending);
 
+        Button backButton = findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish the current activity and go back to the previous activity
+                finish();
+            }
+        });
     }
 }
