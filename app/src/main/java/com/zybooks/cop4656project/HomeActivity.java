@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -52,6 +53,18 @@ public class HomeActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.piechart);
         savings1pieChart = findViewById(R.id.savings1piechart);
         savings2pieChart = findViewById(R.id.savings2piechart);
+
+        // Find the TextView by its ID
+        TextView textView = findViewById(R.id.addStatementButton);
+
+        // Set OnClickListener to open InputSpending activity when the TextView is clicked
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, InputSpending.class);
+                startActivity(intent);
+            }
+        });
 
         // Set OnClickListener for the settings button
         Button settingsButton = findViewById(R.id.bottomRightButton);
