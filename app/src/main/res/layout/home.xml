@@ -205,7 +205,7 @@
                     <LinearLayout
                         android:id="@+id/savings1orangeLinearLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:background="@color/orange_background"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
@@ -315,7 +315,7 @@
                     <LinearLayout
                         android:id="@+id/savings2orangeLinearLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:background="@color/orange_background"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
@@ -392,14 +392,33 @@
 
     </TableLayout>
 
+
+
+    <TextView
+        android:id="@+id/addStatementButton"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Add a Statement to the Budget"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_background"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"/>
+
+
     <Button
         android:id="@+id/bottomRightButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="230dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="225dp"
+        android:layout_marginTop="50dp"
         android:text="Settings" />
 
 
