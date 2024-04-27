@@ -10,13 +10,10 @@ import java.util.Date;
 public class SavingsGoal {
     @PrimaryKey(autoGenerate = true)
     public int id;
-
     @ColumnInfo(name = "target_amount")
     public double targetAmount;
-
     @ColumnInfo(name = "current_amount")
     public double currentAmount;
-
     @ColumnInfo(name = "target_date")
     public Date targetDate;
 
