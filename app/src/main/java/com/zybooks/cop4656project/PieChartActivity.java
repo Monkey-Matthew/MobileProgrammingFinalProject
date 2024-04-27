@@ -12,9 +12,9 @@ import org.eazegraph.lib.models.PieModel;
 public class PieChartActivity extends AppCompatActivity {
 
 
-    //Declares and initializes 2 variables which are refrenced from the SecondActivity.java file.
-    int budgetSpent = SecondActivity.budgetSpent;
-    int budgetLeft = SecondActivity.budgetLeft;
+    //Declares and initializes 2 variables which are referenced from the SecondActivity.java file.
+    int budgetSpent = HomeActivity.budgetSpent;
+    int budgetLeft = HomeActivity.budgetLeft;
 
     //Creates the object of TextView and PieChart class.
     TextView textViewSpent, textViewBudgetLeft;
