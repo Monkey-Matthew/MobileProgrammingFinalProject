@@ -14,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InformationActivity extends AppCompatActivity {
 
-    private TextView nameEditText;
-    private TextView monthlyBudgetEditText;
-    private TextView monthlySaveGoalEditText;
-    private TextView savingsEditText;
-    private ToggleButton automaticSavingsToggleButton;
+    private Button nameButton;
+    private Button monthlyBudgetButton;
+    private Button monthlySaveGoalButton;
+    private Button savingsButton;
+    private Button automaticSavingsButton;
     private Button nextButton;
 
     @Override
@@ -26,11 +26,11 @@ public class InformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        nameEditText = findViewById(R.id.nameEditText);
-        monthlyBudgetEditText = findViewById(R.id.monthlyBudgetEditText);
-        monthlySaveGoalEditText = findViewById(R.id.monthlySaveGoalEditText);
-        savingsEditText = findViewById(R.id.describeSavingsEditText);
-        automaticSavingsToggleButton = findViewById(R.id.automaticSavingsToggleButton);
+        nameButton = findViewById(R.id.nameButton);
+        monthlyBudgetButton = findViewById(R.id.monthlyBudgetButton);
+        monthlySaveGoalButton = findViewById(R.id.monthlySaveGoalButton);
+        savingsButton = findViewById(R.id.describeSavingsButton);
+        automaticSavingsButton = findViewById(R.id.automaticSavingsButton);
         nextButton = findViewById(R.id.nextButton);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -40,25 +40,5 @@ public class InformationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        automaticSavingsToggleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onToggleAutomaticSavings();
-            }
-        });
-    }
-
-    private void onNextButtonClicked() {
-        showToast("Next button clicked!");
-    }
-
-    private void onToggleAutomaticSavings() {
-        String status = automaticSavingsToggleButton.isChecked() ? "Automatic Savings ON" : "Automatic Savings OFF";
-        showToast(status);
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

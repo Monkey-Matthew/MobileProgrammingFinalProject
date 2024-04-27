@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
-    android:background="#000000">
+    android:background="@color/black">
 
     <!-- App Title -->
     <TextView
@@ -19,63 +18,61 @@
         android:layout_marginBottom="16dp"/>
 
     <!-- name -->
-    <TextView
-        android:id="@+id/nameEditText"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/nameButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="What's your name?"
-        android:padding="12dp"
-        android:backgroundTint="#FFA726" />
+        android:text="What is you name?"
+        android:layout_below="@id/text_app_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
 
     <!-- monthly spend budget -->
-    <TextView
-        android:id="@+id/monthlyBudgetEditText"
+    <Button
+        android:id="@+id/monthlyBudgetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What is your monthly spend budget?"
-        android:layout_below="@id/text_welcome_message"
+        android:layout_below="@id/nameButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
     <!-- Save goal -->
-    <TextView
-        android:id="@+id/monthlySaveGoalEditText"
+    <Button
+        android:id="@+id/monthlySaveGoalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What is you general monthly save goal?"
-        android:layout_below="@id/changeBudgetButton"
+        android:layout_below="@id/monthlyBudgetButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
     <!-- current saving -->
-    <TextView
-        android:id="@+id/describeSavingsEditText"
+    <Button
+        android:id="@+id/describeSavingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How Would You Describe Your Saving Currently?"
-        android:layout_below="@id/button_change_save_goal"
+        android:layout_below="@id/monthlySaveGoalButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
     <!-- automatic savings -->
-    <ToggleButton
-        android:id="@+id/automaticSavingsToggleButton"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/automaticSavingsButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOff="Do you have automatic savings?"
-        android:textOn="Do you have automatic savings?"
-        android:background="#FFA726"
-        android:textColor="#FFFFFF"
-        android:padding="12dp" />
+        android:text="Do you have automatic savings set up?"
+        android:layout_below="@id/describeSavingsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
 
     <!-- next Button -->
     <Button
         android:id="@+id/nextButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:background="#FFA726"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="24dp"
-        android:padding="12dp" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Next" />
+</RelativeLayout>
