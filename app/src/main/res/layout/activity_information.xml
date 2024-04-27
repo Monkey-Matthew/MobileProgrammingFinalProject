@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#000000">
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/text_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/obised"
+        android:text="BudgetBuddy"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- name -->
+    <TextView
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="What's your name?"
+        android:padding="12dp"
+        android:backgroundTint="#FFA726" />
+
+    <!-- monthly spend budget -->
+    <TextView
+        android:id="@+id/monthlyBudgetEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is your monthly spend budget?"
+        android:layout_below="@id/text_welcome_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Save goal -->
+    <TextView
+        android:id="@+id/monthlySaveGoalEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is you general monthly save goal?"
+        android:layout_below="@id/changeBudgetButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- current saving -->
+    <TextView
+        android:id="@+id/describeSavingsEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How Would You Describe Your Saving Currently?"
+        android:layout_below="@id/button_change_save_goal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- automatic savings -->
+    <ToggleButton
+        android:id="@+id/automaticSavingsToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Do you have automatic savings?"
+        android:textOn="Do you have automatic savings?"
+        android:background="#FFA726"
+        android:textColor="#FFFFFF"
+        android:padding="12dp" />
+
+    <!-- next Button -->
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:background="#FFA726"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="24dp"
+        android:padding="12dp" />
+</LinearLayout>
