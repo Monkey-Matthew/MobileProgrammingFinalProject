@@ -11,24 +11,24 @@ import java.util.Date;
 public class Budget {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
 
     @ColumnInfo(name = "name")
     public String name;
     @ColumnInfo(name = "category_id")
-    public int categoryId;
+    public long categoryId;
     @ColumnInfo(name = "monthly_budget")
     public double monthlyBudget;
     @ColumnInfo(name = "general_monthly_save_goal")
     public double monthlySaveGoal;
     @ColumnInfo(name = "savings_type")  //will be 1 for conservative, 2 for normal and 3 for agg.
-    public int savingsType;
+    public long savingsType;
     @ColumnInfo(name = "start_date")
     public Date currentDate;
 
     //constructor
-    public Budget(int id, int categoryId, double monthlyBudget, Date currentDate,
-                  double monthlySaveGoal, int savingsType) {
+    public Budget(long id, int categoryId, double monthlyBudget, Date currentDate,
+                  double monthlySaveGoal, long savingsType) {
         this.id = id;
         this.categoryId = categoryId;
         this.monthlyBudget = monthlyBudget;
@@ -38,12 +38,12 @@ public class Budget {
     }
 
     //getters
-    public int getId() { return id; }
-    public int getCategoryId() { return categoryId; }
+    public long getId() { return id; }
+    public long getCategoryId() { return categoryId; }
     public double getMonthlyBudget() { return monthlyBudget; }
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
     public Date getCurrentDate() { return currentDate; }
-    public int getSavingsType() { return savingsType; }
+    public long getSavingsType() { return savingsType; }
 
     //setters for values that can be changed
     public void setMonthlyBudget(double monthlyBudget) {

@@ -10,13 +10,13 @@ import java.util.Date;
         parentColumns = "id", childColumns = "category_id", onDelete = ForeignKey.CASCADE))
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
 
     @ColumnInfo(name = "date")
     public Date date;
 
     @ColumnInfo(name = "category_id")
-    public int categoryId;
+    public long categoryId;
 
     @ColumnInfo(name = "description")
     public String description;
@@ -27,7 +27,7 @@ public class Transaction {
     @ColumnInfo(name = "transaction_type")
     public String transactionType;
 
-    public Transaction(int id, int categoryId, double amount, Date date, String description, String transactionType) {
+    public Transaction(long id, long categoryId, double amount, Date date, String description, String transactionType) {
         this.id = id;
         this.categoryId = categoryId;
         this.amount = amount;
@@ -36,9 +36,9 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
     public Date getDate() { return date; }
-    public int getCategoryId() { return categoryId; }
+    public long getCategoryId() { return categoryId; }
     public String getDescription() { return description; }
     public double getAmount() { return amount; }
     public String getTransactionType() { return transactionType; }

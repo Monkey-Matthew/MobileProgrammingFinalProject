@@ -19,19 +19,4 @@ public abstract class BudgetAppDatabase extends RoomDatabase{
     public abstract BudgetDao budgetDao();
     public abstract CategoryDao categoryDao();
     public abstract SavingsGoalDao savingsGoalDao();
-
-    private static volatile BudgetAppDatabase INSTANCE;
-
-    static BudgetAppDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (BudgetAppDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    BudgetAppDatabase.class, "budget_database")
-                            .build();
-                }
-            }
-        }
-        return INSTANCE;
-    }
 }

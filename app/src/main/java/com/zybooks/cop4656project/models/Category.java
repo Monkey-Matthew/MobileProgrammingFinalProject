@@ -8,15 +8,15 @@ import java.util.Date;
 @Entity(tableName = "categories")
 public class Category {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @ColumnInfo(name = "name")
     public String name;
 
-    public Category(int id, String name) {
+    public Category(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
     public String getName() { return name; }
 }

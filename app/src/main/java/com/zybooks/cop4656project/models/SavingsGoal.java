@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity(tableName = "savings_goals")
 public class SavingsGoal {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @ColumnInfo(name = "target_amount")
     public double targetAmount;
     @ColumnInfo(name = "current_amount")
@@ -20,7 +20,7 @@ public class SavingsGoal {
     @ColumnInfo(name = "name")
     public String name;
 
-    public SavingsGoal(int id, double targetAmount, double currentAmount, Date targetDate, String name) {
+    public SavingsGoal(long id, double targetAmount, double currentAmount, Date targetDate, String name) {
         this.id = id;
         this.targetAmount = targetAmount;
         this.currentAmount = currentAmount;
@@ -28,7 +28,7 @@ public class SavingsGoal {
         this.name = name;
     }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
     public double getTargetAmount() { return targetAmount; }
 
     public double getCurrentAmount() { return currentAmount; }
