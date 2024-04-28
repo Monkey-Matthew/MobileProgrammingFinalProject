@@ -124,18 +124,18 @@
             android:layout_marginLeft="20dp"/>
 
         <RadioButton
-            android:id="@+id/conservative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Conservative"
-            android:textColor="@color/white"
-            android:layout_marginLeft="20dp"/>
-
-        <RadioButton
             android:id="@+id/normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Normal"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"/>
+
+        <RadioButton
+            android:id="@+id/conservative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conservative"
             android:textColor="@color/white"
             android:layout_marginLeft="20dp" />
     </RadioGroup>

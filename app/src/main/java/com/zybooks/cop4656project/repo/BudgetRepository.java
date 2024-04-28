@@ -67,9 +67,14 @@ public class BudgetRepository {
             mBudgetDao.deleteBudget(budget);
         });
     }
-    public void updateBudget(Budget budget) {
+    public void updateIncome(Budget budget) {
         mDatabaseExecutor.execute(() -> {
             mBudgetDao.updateMonthlyIncome(budget);
+        });
+    }
+    public void updateSavings(Budget budget) {
+        mDatabaseExecutor.execute(() -> {
+            mBudgetDao.updateSavings(budget);
         });
     }
     public void addTransaction(Transaction transaction) {

@@ -42,7 +42,7 @@ public class ChangeIncome extends AppCompatActivity {
                     try {
                         double newIncome = Double.parseDouble(editText.getText().toString());
                         budget.setMonthlyIncome(newIncome); // Update the budget with new income
-                        mBudgetRepository.updateBudget(budget); // Persist the updated budget
+                        mBudgetRepository.updateIncome(budget); // Persist the updated budget
                         Toast.makeText(this, "Monthly income updated.", Toast.LENGTH_SHORT).show();
                         finish();
                     } catch (NumberFormatException e) {

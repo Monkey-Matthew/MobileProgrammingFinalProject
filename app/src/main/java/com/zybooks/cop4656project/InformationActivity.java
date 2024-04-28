@@ -47,7 +47,7 @@ public class InformationActivity extends AppCompatActivity {
                 }
 
                 int savingsType = getSavingsTypeFromRadioGroup(savingsTypeRadioGroup);
-                boolean autoSavings = autoSavingsSwitch.isChecked();  // Changed to use SwitchCompat
+                boolean autoSavings = autoSavingsSwitch.isChecked();
 
                 Date currentDate = new Date();
 

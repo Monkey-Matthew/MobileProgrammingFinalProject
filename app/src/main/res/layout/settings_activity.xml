@@ -54,7 +54,7 @@
         android:id="@+id/button_describe_saving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How Would You Describe Your Saving Currently?"
+        android:text="Change Saving Habits"
         android:layout_below="@id/button_change_save_goal"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>

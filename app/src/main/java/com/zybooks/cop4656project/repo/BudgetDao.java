@@ -21,8 +21,10 @@ public interface BudgetDao {
     LiveData<Integer> countBudgets();
     @Query("SELECT * FROM budget LIMIT 1")
     LiveData<Budget> getBudget();
-
     @Update
     void updateMonthlyIncome(Budget budget);
+
+    @Update
+    void updateSavings(Budget budget);
 }
 
