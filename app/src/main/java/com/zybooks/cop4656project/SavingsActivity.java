@@ -11,28 +11,25 @@ import android.widget.TextView;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
-public class PieChartActivity extends AppCompatActivity {
+public class SavingsActivity extends AppCompatActivity {
 
 
     //Declares and initializes 2 variables which are referenced from the SecondActivity.java file.
-    int budgetSpent = HomeActivity.budgetSpent;
-    int budgetLeft = HomeActivity.budgetLeft;
+    int amountSaved = HomeActivity.savings1AmountSaved;
+    int amountLeft = HomeActivity.savings1AmountLeft;
 
-    //Creates the object of TextView and PieChart class.
-    TextView textViewSpent, textViewBudgetLeft;
+
     PieChart pieChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pie_chart);
+        setContentView(R.layout.savings);
 
 
         //Grabs the ids for the textViews and the pie chart to alter them in the method below.
-        textViewSpent = findViewById(R.id.textViewSpent);
-        textViewBudgetLeft = findViewById(R.id.textViewBudgetLeft);
-        pieChart = findViewById(R.id.piechart);
+        pieChart = findViewById(R.id.savings1piechart);
 
         //Calls method to set the data and change the pie chart.
         setData();
@@ -51,20 +48,17 @@ public class PieChartActivity extends AppCompatActivity {
     private void setData()
     {
 
-        //Assigns the text to be what is defined in SecondActivity.java values for budgetSpent and budgetLeft.
-        textViewSpent.setText(String.valueOf(budgetSpent));
-        textViewBudgetLeft.setText(String.valueOf(budgetLeft));
 
         //Set the data and color to the pie chart (we can always change colors later)
         pieChart.addPieSlice(
                 new PieModel(
-                        "BudgetLeft",
-                        budgetSpent,
+                        "AmountSaved",
+                        amountSaved,
                         Color.parseColor("#FF5722")));
         pieChart.addPieSlice(
                 new PieModel(
-                        "BudgentSpent",
-                        budgetLeft,
+                        "AmountLeft",
+                        amountLeft,
                         Color.parseColor("#000000")));
 
         //Animates the pie chart.

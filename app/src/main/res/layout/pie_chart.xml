@@ -63,7 +63,7 @@
                     <View
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:background="@color/BudgetSpent"/>
+                        android:background="@color/orange"/>
 
                     <!--Text view to display Amount Spent-->
                     <TextView
@@ -89,7 +89,7 @@
                     <View
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:background="@color/BudgetLeft"/>
+                        android:background="@color/black"/>
 
                     <!--Text view to Budget Left text -->
                     <TextView

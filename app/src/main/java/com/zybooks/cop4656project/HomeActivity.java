@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         settings1PieChartLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, Savings1Activity.class);
+                Intent intent = new Intent(HomeActivity.this, SavingsActivity.class);
                 startActivity(intent);
             }
         });
