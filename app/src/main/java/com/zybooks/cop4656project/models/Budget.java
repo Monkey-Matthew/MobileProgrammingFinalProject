@@ -6,8 +6,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
-@Entity(tableName = "budget", foreignKeys = @ForeignKey(entity = Category.class,
-        parentColumns = "id", childColumns = "category_id", onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "budget")
 public class Budget {
 
     @PrimaryKey(autoGenerate = true)
@@ -15,46 +14,48 @@ public class Budget {
 
     @ColumnInfo(name = "name")
     public String name;
-    @ColumnInfo(name = "category_id")
-    public long categoryId;
     @ColumnInfo(name = "monthly_budget")
-    public double monthlyBudget;
+    public double monthlyIncome;
     @ColumnInfo(name = "general_monthly_save_goal")
     public double monthlySaveGoal;
     @ColumnInfo(name = "savings_type")  //will be 1 for conservative, 2 for normal and 3 for agg.
     public long savingsType;
-    @ColumnInfo(name = "start_date")
+    @ColumnInfo(name = "current_date")
     public Date currentDate;
 
+    @ColumnInfo(name = "auto_savings")
+    public boolean autoSavings;
+
     //constructor
-    public Budget(long id, int categoryId, double monthlyBudget, Date currentDate,
-                  double monthlySaveGoal, long savingsType) {
+    public Budget(long id, String name, double monthlyIncome, Date currentDate,
+                  double monthlySaveGoal, long savingsType, boolean autoSavings) {
         this.id = id;
-        this.categoryId = categoryId;
-        this.monthlyBudget = monthlyBudget;
+        this.name = name;
+        this.monthlyIncome = monthlyIncome;
         this.currentDate = currentDate;
         this.monthlySaveGoal = monthlySaveGoal;
         this.savingsType = savingsType;
+        this.autoSavings = autoSavings;
     }
 
     //getters
     public long getId() { return id; }
-    public long getCategoryId() { return categoryId; }
-    public double getMonthlyBudget() { return monthlyBudget; }
+    public String getName() { return name;}
+    public double getMonthlyBudget() { return monthlyIncome; }
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
     public Date getCurrentDate() { return currentDate; }
     public long getSavingsType() { return savingsType; }
+    public boolean isAutoSavings() { return autoSavings; }
 
     //setters for values that can be changed
     public void setMonthlyBudget(double monthlyBudget) {
-        this.monthlyBudget = monthlyBudget;
+        this.monthlyIncome = monthlyBudget;
     }
-
     public void setMonthlySaveGoal(double monthlySaveGoal) {
         this.monthlySaveGoal = monthlySaveGoal;
     }
-
     public void setSavingsType(int savingsType) {
         this.savingsType = savingsType;
     }
+    public void setAutoSavings(boolean autoSavings) { this.autoSavings = autoSavings; }
 }

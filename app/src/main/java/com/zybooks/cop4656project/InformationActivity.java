@@ -9,69 +9,66 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
+import androidx.appcompat.widget.SwitchCompat;  // Import for SwitchCompat
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InformationActivity extends AppCompatActivity {
+import com.zybooks.cop4656project.models.Budget;
+import com.zybooks.cop4656project.repo.BudgetAppDatabase;
+import com.zybooks.cop4656project.repo.BudgetRepository;
 
+import java.util.Date;
+
+public class InformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        Button nameButton = findViewById(R.id.nameButton);
-        Button monthlyBudgetButton = findViewById(R.id.monthlyBudgetButton);
-        Button monthlySaveGoalButton = findViewById(R.id.monthlySaveGoalButton);
-        Button savingsButton = findViewById(R.id.describeSavingsButton);
-        Button automaticSavingsButton = findViewById(R.id.automaticSavingsButton);
-        Button nextButton = findViewById(R.id.nextButton);
+        final EditText nameEditText = findViewById(R.id.name_edit_text);
+        final EditText monthlyIncomeEditText = findViewById(R.id.editTextPrice);
+        final EditText monthlySaveGoalEditText = findViewById(R.id.save_goal_edit_text);
+        final RadioGroup savingsTypeRadioGroup = findViewById(R.id.radioGroupSavingsType);
+        final SwitchCompat autoSavingsSwitch = findViewById(R.id.my_switch);  // Changed to SwitchCompat
 
-        nameButton.setOnClickListener(new View.OnClickListener() {
+        Button submitButton = findViewById(R.id.button_submit);
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InformationActivity.this, NameActivity.class);
-                startActivity(intent);
-            }
-        });
-        monthlyBudgetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(InformationActivity.this, ChangeBudget.class);
-                startActivity(intent);
-            }
-        });
+                String name = nameEditText.getText().toString();
+                double monthlyIncome = 0;
+                double monthlySaveGoal = 0;
 
-        monthlySaveGoalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(InformationActivity.this, ChangeSavings.class);
-                startActivity(intent);
-            }
-        });
-        savingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(InformationActivity.this, DescribeSavings.class);
-                startActivity(intent);
-            }
-        });
-        automaticSavingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(InformationActivity.this, ChangeAutoSavings.class);
-                startActivity(intent);
-            }
-        });
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                try {
+                    monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
+                    monthlySaveGoal = Double.parseDouble(monthlySaveGoalEditText.getText().toString());
+                } catch (NumberFormatException e) {
+                    Toast.makeText(InformationActivity.this, "Please enter valid numbers for income and save goal.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                int savingsType = getSavingsTypeFromRadioGroup(savingsTypeRadioGroup);
+                boolean autoSavings = autoSavingsSwitch.isChecked();  // Changed to use SwitchCompat
+
+                Date currentDate = new Date();
+
+                Budget budget = new Budget(0, name, monthlyIncome, currentDate, monthlySaveGoal, savingsType, autoSavings);
+
+                saveBudget(budget);
+
                 Intent intent = new Intent(InformationActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
+    }
+    private int getSavingsTypeFromRadioGroup(RadioGroup radioGroup) {
+        int radioButtonID = radioGroup.getCheckedRadioButtonId();
+        View radioButton = radioGroup.findViewById(radioButtonID);
+        int idx = radioGroup.indexOfChild(radioButton);
+        return idx + 1;
+    }
+
+    private void saveBudget(Budget budget) {
+        BudgetRepository mBudgetRepo = BudgetRepository.getInstance(getApplicationContext());
+        mBudgetRepo.addBudget(budget);
     }
 }

@@ -25,6 +25,7 @@ public class BudgetRepository {
     private final CategoryDao mCategoryDao;
     private final TransactionDao mTransactionDao;
     private final SavingsGoalDao mSavingsGoalDao;
+    private LiveData<Integer> budgetCount;
 
     public static BudgetRepository getInstance(Context context) {
         if(mBudgetRepo == null) {
@@ -35,7 +36,7 @@ public class BudgetRepository {
 
     private static final String DB_NAME = "budget1.db";
 
-    private BudgetRepository(Context context) {
+    public BudgetRepository(Context context) {
         RoomDatabase.Callback databaseCallback = new RoomDatabase.Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -51,6 +52,7 @@ public class BudgetRepository {
         mCategoryDao = database.categoryDao();
         mTransactionDao = database.transactionDao();
         mSavingsGoalDao = database.savingsGoalDao();
+        budgetCount = mBudgetDao.countBudgets();
     }
 
     public void addBudget(Budget budget) {
@@ -86,5 +88,9 @@ public class BudgetRepository {
 
     public LiveData<List<SavingsGoal>> getSavingsGoals() {
         return mSavingsGoalDao.getSavingsGoals();
+    }
+
+    public LiveData<Integer> getBudgetCount() {
+        return budgetCount;
     }
 }

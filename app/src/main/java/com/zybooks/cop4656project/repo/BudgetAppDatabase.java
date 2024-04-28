@@ -12,9 +12,9 @@ import com.zybooks.cop4656project.models.Category;
 import com.zybooks.cop4656project.models.SavingsGoal;
 import com.zybooks.cop4656project.models.Transaction;
 
-@Database(entities = {Transaction.class, Budget.class, SavingsGoal.class, Category.class}, version = 1)
+@Database(entities = {Transaction.class, Budget.class, SavingsGoal.class, Category.class}, version = 1, exportSchema = false)
 @TypeConverters({DateConverter.class})
-public abstract class BudgetAppDatabase extends RoomDatabase{
+public abstract class BudgetAppDatabase extends RoomDatabase {
     public abstract TransactionDao transactionDao();
     public abstract BudgetDao budgetDao();
     public abstract CategoryDao categoryDao();

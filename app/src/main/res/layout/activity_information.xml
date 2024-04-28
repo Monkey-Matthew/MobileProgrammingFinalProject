@@ -1,78 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/black">
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="@color/black"
+    android:gravity="center">
 
-    <!-- App Title -->
     <TextView
-        android:id="@+id/text_app_title"
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/obised"
         android:text="BudgetBuddy"
-        android:textSize="35dp"
         android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
-    <!-- name -->
-    <Button
-        android:id="@+id/nameButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What is you name?"
-        android:layout_below="@id/text_app_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
-    <!-- monthly spend budget -->
-    <Button
-        android:id="@+id/monthlyBudgetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="What is your monthly spend budget?"
-        android:layout_below="@id/nameButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:id="@+id/name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            />
 
-    <!-- Save goal -->
-    <Button
-        android:id="@+id/monthlySaveGoalButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="What is you general monthly save goal?"
-        android:layout_below="@id/monthlyBudgetButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/orange"
+            android:layout_marginLeft="80dp" />
 
-    <!-- current saving -->
-    <Button
-        android:id="@+id/describeSavingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How Would You Describe Your Saving Currently?"
-        android:layout_below="@id/monthlySaveGoalButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+    </LinearLayout>
 
-    <!-- automatic savings -->
-    <Button
-        android:id="@+id/automaticSavingsButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Do you have automatic savings set up?"
-        android:layout_below="@id/describeSavingsButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
-    <!-- next Button -->
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly Income:"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            />
+
+        <EditText
+            android:id="@+id/editTextPrice"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/orange"
+            android:layout_marginLeft="18dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Next" />
-</RelativeLayout>
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/dave_goal_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly Save Goal:"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            />
+
+        <EditText
+            android:id="@+id/save_goal_edit_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/orange"
+            android:layout_marginLeft="3dp"
+            android:inputType="textCapCharacters"/>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroupSavingsType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="13dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Saving Habits:"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <RadioButton
+            android:id="@+id/aggressive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aggressive"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"/>
+
+        <RadioButton
+            android:id="@+id/conservative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conservative"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"/>
+
+        <RadioButton
+            android:id="@+id/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:text="Use Automatic Savings?"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/my_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="145dp"
+            android:text="Submit" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

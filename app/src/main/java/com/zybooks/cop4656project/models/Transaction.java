@@ -6,8 +6,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
-@Entity(tableName = "transactions", foreignKeys = @ForeignKey(entity = Category.class,
-        parentColumns = "id", childColumns = "category_id", onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "transactions")
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
     public long id;
