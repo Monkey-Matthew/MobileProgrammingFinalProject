@@ -63,8 +63,7 @@ public class InformationActivity extends AppCompatActivity {
     private int getSavingsTypeFromRadioGroup(RadioGroup radioGroup) {
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
         View radioButton = radioGroup.findViewById(radioButtonID);
-        int idx = radioGroup.indexOfChild(radioButton);
-        return idx + 1;
+        return radioGroup.indexOfChild(radioButton);
     }
 
     private void saveBudget(Budget budget) {

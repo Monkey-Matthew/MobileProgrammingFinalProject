@@ -43,9 +43,8 @@ public class Budget {
     public String getName() { return name;}
     public double getMonthlyIncome() { return monthlyIncome; }
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
-    public Date getCurrentDate() { return currentDate; }
     public long getSavingsType() { return savingsType; }
-    public boolean isAutoSavings() { return autoSavings; }
+    public boolean getAutoSavings() { return autoSavings; }
 
     //setters for values that can be changed
     public void setMonthlyIncome(double monthlyIncome) {

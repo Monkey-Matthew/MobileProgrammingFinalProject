@@ -56,7 +56,6 @@ public class SettingsActivity extends AppCompatActivity {
         describeSavingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
                 Intent intent = new Intent(SettingsActivity.this, DescribeSavings.class);
                 startActivity(intent);
             }

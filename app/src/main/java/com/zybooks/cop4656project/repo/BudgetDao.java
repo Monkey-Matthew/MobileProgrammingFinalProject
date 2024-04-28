@@ -23,8 +23,11 @@ public interface BudgetDao {
     LiveData<Budget> getBudget();
     @Update
     void updateMonthlyIncome(Budget budget);
-
     @Update
     void updateSavings(Budget budget);
+    @Update
+    void updateSavingHabits(Budget budget);
+    @Update
+    void updateAutoSavings(Budget budget);
 }
 

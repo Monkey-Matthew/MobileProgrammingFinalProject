@@ -32,30 +32,27 @@
             android:orientation="vertical"
             android:id="@+id/describeSavingsRadioGroup">
 
-            <RadioButton android:id="@+id/agressive"
+            <RadioButton android:id="@+id/aggressive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Agressive"
+                android:text="Aggressive"
                 android:textColor="@color/white"
-                android:textSize="30dp"
-                android:onClick="onRadioButtonClicked" />
+                android:textSize="30dp" />
 
             <RadioButton android:id="@+id/normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Normal"
                 android:textColor="@color/white"
-                android:textSize="30dp"
-                android:onClick="onRadioButtonClicked" />
+                android:textSize="30dp" />
 
             <RadioButton android:id="@+id/conservative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Conservative"
                 android:textColor="@color/white"
-                android:textSize="30dp"
-                android:onClick="onRadioButtonClicked" />
+                android:textSize="30dp" />
 
         </RadioGroup>
 

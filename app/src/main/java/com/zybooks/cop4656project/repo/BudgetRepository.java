@@ -77,6 +77,17 @@ public class BudgetRepository {
             mBudgetDao.updateSavings(budget);
         });
     }
+
+    public void updateSavingHabits(Budget budget) {
+        mDatabaseExecutor.execute(() -> {
+            mBudgetDao.updateSavingHabits(budget);
+        });
+    }
+    public void updateAutoSavings(Budget budget) {
+        mDatabaseExecutor.execute(() -> {
+            mBudgetDao.updateAutoSavings(budget);
+        });
+    }
     public void addTransaction(Transaction transaction) {
         mDatabaseExecutor.execute(() -> {
             mTransactionDao.insert(transaction);
