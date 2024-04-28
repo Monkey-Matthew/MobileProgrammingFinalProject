@@ -22,7 +22,7 @@ public class AddToSavings extends AppCompatActivity
         Button backButton = findViewById(R.id.button_back);
 
         // Find the EditText by its ID
-        EditText editText = findViewById(R.id.edit_text_new_budget);
+        EditText editText = findViewById(R.id.edit_text_add_savings);
 
         applyChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
