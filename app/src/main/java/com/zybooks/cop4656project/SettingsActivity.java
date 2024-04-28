@@ -17,6 +17,9 @@ public class SettingsActivity extends AppCompatActivity {
         // Find the button in settings_activity.xml
         Button openChangeBudgetButton = findViewById(R.id.changeBudgetButton);
         Button openChangeSavingButton = findViewById(R.id.button_change_save_goal);
+        Button describeSavingButton = findViewById(R.id.button_describe_saving);
+        Button changeAutoSavingsButton = findViewById(R.id.button_change_auto_savings);
+        Button resetButton = findViewById(R.id.button_reset);
         Button backButton = findViewById(R.id.button_back);
 
         // Set OnClickListener for the button
@@ -34,6 +37,33 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an intent to start the activity to display change_budget.xml
                 Intent intent = new Intent(SettingsActivity.this, ChangeSavingsGoal.class);
+                startActivity(intent);
+            }
+        });
+
+        describeSavingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(SettingsActivity.this, DescribeSavings.class);
+                startActivity(intent);
+            }
+        });
+
+        changeAutoSavingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(SettingsActivity.this, ChangeAutoSavings.class);
+                startActivity(intent);
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(SettingsActivity.this, InformationActivity.class);
                 startActivity(intent);
             }
         });
