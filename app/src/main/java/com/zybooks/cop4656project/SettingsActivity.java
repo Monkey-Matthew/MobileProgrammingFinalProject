@@ -36,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(SettingsActivity.this, ChangeSavingsGoal.class);
+                Intent intent = new Intent(SettingsActivity.this, ChangeSavings.class);
                 startActivity(intent);
             }
         });

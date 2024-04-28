@@ -24,14 +24,10 @@ public class HomeActivity extends AppCompatActivity {
     public static int savings1AmountSaved = 3000;
     public static int savings1AmountLeft = savings1Goal - savings1AmountSaved;
 
-    public static int savings2Goal = 2000;
-    public static int savings2AmountSaved = 1800;
-    public static int savings2AmountLeft = savings2Goal - savings2AmountSaved;
 
     //Creates the object pieChart class.
     PieChart pieChart;
     PieChart savings1pieChart;
-    PieChart savings2pieChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +52,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, Savings1Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        //This references the pieChartLayout so that we can have the layout act like a button.
-        LinearLayout settings2PieChartLayout = findViewById(R.id.savings2pieChartView);
-
-        settings2PieChartLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, Savings2Activity.class);
                 startActivity(intent);
             }
         });
@@ -99,7 +84,6 @@ public class HomeActivity extends AppCompatActivity {
         //Grabs the id for the pieChart so we can update how it looks.
         pieChart = findViewById(R.id.piechart);
         savings1pieChart = findViewById(R.id.savings1piechart);
-        savings2pieChart = findViewById(R.id.savings2piechart);
 
         //Calls to setData for the pie chart.
         setData();
@@ -109,7 +93,6 @@ public class HomeActivity extends AppCompatActivity {
         // Clear any existing pie slices
         pieChart.clearChart();
         savings1pieChart.clearChart();
-        savings2pieChart.clearChart();
 
         // Sets the data and the colors to the pie chart for the overall budget
         pieChart.addPieSlice(
@@ -135,22 +118,10 @@ public class HomeActivity extends AppCompatActivity {
                         savings1AmountLeft,
                         Color.parseColor("#000000")));
 
-        // Sets the data and the colors to the pie chart for savings 2
-        savings2pieChart.addPieSlice(
-                new PieModel(
-                        "Amount Saved",
-                        savings2AmountSaved,
-                        Color.parseColor("#FF5722")));
-        savings2pieChart.addPieSlice(
-                new PieModel(
-                        "Amount Left",
-                        savings2AmountLeft,
-                        Color.parseColor("#000000")));
 
         // Animates the pie charts
         pieChart.startAnimation();
         savings1pieChart.startAnimation();
-        savings2pieChart.startAnimation();
     }
 
     @Override

@@ -130,26 +130,14 @@
             android:layout_height="50dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="130dp"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Savings 1"
+            android:text="Savings"
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="65dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Savings 2"
-            android:textColor="@color/orange"
-            android:textStyle="bold"
-            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -163,7 +151,7 @@
                 android:id="@+id/savings1graph"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="110dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="20dp"
                 android:elevation="10dp">
@@ -278,113 +266,7 @@
 
 
 
-            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/savings2graph"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="0dp"
-                android:elevation="10dp">
 
-
-                <!-- This is the code for the card at the top-->
-                <LinearLayout
-                    android:id="@+id/savings2pieChartView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="vertical">
-
-
-                    <!--This is the pie chart code-->
-
-
-                    <org.eazegraph.lib.charts.PieChart xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/savings2piechart"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="1"
-                        android:padding="6dp" />
-
-
-                    <!-- This is the code for the right hand side of the card at the top-->
-                    <LinearLayout
-                        android:id="@+id/savings2orangeLinearLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@color/orange_background"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="15dp">
-
-
-                            <!--View to display the black color icon (can always be adjusted later)-->
-                            <View
-                                android:layout_width="15dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/BudgetLeft" />
-
-
-                            <!--Text view to display Amount Spent-->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp"
-                                android:paddingLeft="5dp"
-                                android:text="Amount Saved"
-                                android:textColor="@color/BudgetSpent"
-                                android:textStyle="bold" />
-
-
-                        </LinearLayout>
-
-
-                        <!--Linear layout to display Budget Left-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp">
-
-
-                            <!--View to display the orange color icon (can always be adjusted later-->
-                            <View
-                                android:layout_width="15dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/BudgetSpent" />
-
-
-                            <!--Text view to Budget Left text -->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="5dp"
-                                android:text="Savings Left"
-                                android:textColor="@color/BudgetSpent"
-                                android:textStyle="bold" />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
 
 
         </TableRow>

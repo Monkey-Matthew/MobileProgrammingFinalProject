@@ -28,7 +28,7 @@
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".ChangeBudget"></activity>
         <activity android:name=".ChangeSavingsGoal"></activity>
-        <activity android:name=".ChangeSavings1"></activity>
+        <activity android:name=".ChangeSavings"></activity>
         <activity android:name=".ChangeSavings2"></activity>
         <activity android:name=".DescribeSavings"></activity>
         <activity android:name=".ChangeAutoSavings"></activity>

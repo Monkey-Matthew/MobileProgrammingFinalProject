@@ -1,21 +1,20 @@
 package com.zybooks.cop4656project;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class Savings2Activity extends AppCompatActivity {
+public class ChangeSavings extends AppCompatActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.savings2);
+        setContentView(R.layout.change_savings);
 
         Button backButton = findViewById(R.id.button_back);
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,5 +22,6 @@ public class Savings2Activity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }

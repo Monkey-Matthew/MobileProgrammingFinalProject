@@ -1,6 +1,5 @@
 package com.zybooks.cop4656project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,7 @@ public class InputSpending extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.input_spending);
+        setContentView(R.layout.input_spendingchoice);
 
         Button backButton = findViewById(R.id.button_back);
         backButton.setOnClickListener(new View.OnClickListener() {
