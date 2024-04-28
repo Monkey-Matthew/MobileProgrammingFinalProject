@@ -18,6 +18,8 @@ public class SavingsActivity extends AppCompatActivity {
     int amountSaved = HomeActivity.savings1AmountSaved;
     int amountLeft = HomeActivity.savings1AmountLeft;
 
+    double goalPercentage = ((double) amountSaved / (amountSaved + amountLeft)) * 100;
+
 
     PieChart pieChart;
 
@@ -27,14 +29,26 @@ public class SavingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.savings);
 
+        // Grab reference to TextView
+        TextView textViewGoalStatus = findViewById(R.id.textViewGoalStatus);
+
+        // Set the text value for the TextView
+        textViewGoalStatus.setText("You are " +  goalPercentage + "% done.");
+
+        // Grab reference to TextView
+        TextView amountLeftTextView = findViewById(R.id.amountLeftTextView);
+
+        // Set the text value for the TextView
+        amountLeftTextView.setText("$" +  amountLeft + " left to save out of $" + (amountLeft + amountSaved));
+
+        Button backButton = findViewById(R.id.button_back);
+
 
         //Grabs the ids for the textViews and the pie chart to alter them in the method below.
         pieChart = findViewById(R.id.savings1piechart);
 
         //Calls method to set the data and change the pie chart.
         setData();
-
-        Button backButton = findViewById(R.id.button_back);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
