@@ -31,6 +31,7 @@
         <activity android:name=".DescribeSavings"></activity>
         <activity android:name=".ChangeAutoSavings"></activity>
         <activity android:name=".SavingsActivity"></activity>
+        <activity android:name=".NameActivity"></activity>
     </application>
 
 </manifest>

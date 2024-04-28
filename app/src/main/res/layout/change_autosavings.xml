@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="What savings would you like to change?"
+        android:text="Would you like to use automatic savings?"
         android:textColor="@color/white"
         android:textSize="40dp"
         android:gravity="center"/>

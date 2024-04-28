@@ -15,10 +15,8 @@ import java.util.List;
 public interface TransactionDao {
     @Insert
     void insert(Transaction transaction);
-
     @Delete
     void deleteTransaction(Transaction transaction);
-
     @Query("SELECT * FROM transactions ORDER BY date COLLATE NOCASE")
     LiveData<List<Transaction>> getTransactions();
 }

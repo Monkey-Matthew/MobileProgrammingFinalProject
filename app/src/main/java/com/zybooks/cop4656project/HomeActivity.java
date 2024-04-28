@@ -24,7 +24,6 @@ public class HomeActivity extends AppCompatActivity {
     public static int savings1AmountSaved = 3000;
     public static int savings1AmountLeft = savings1Goal - savings1AmountSaved;
 
-
     //Creates the object pieChart class.
     PieChart pieChart;
     PieChart savings1pieChart;

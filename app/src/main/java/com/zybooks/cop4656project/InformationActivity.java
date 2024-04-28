@@ -14,25 +14,58 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InformationActivity extends AppCompatActivity {
 
-    private Button nameButton;
-    private Button monthlyBudgetButton;
-    private Button monthlySaveGoalButton;
-    private Button savingsButton;
-    private Button automaticSavingsButton;
-    private Button nextButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        nameButton = findViewById(R.id.nameButton);
-        monthlyBudgetButton = findViewById(R.id.monthlyBudgetButton);
-        monthlySaveGoalButton = findViewById(R.id.monthlySaveGoalButton);
-        savingsButton = findViewById(R.id.describeSavingsButton);
-        automaticSavingsButton = findViewById(R.id.automaticSavingsButton);
-        nextButton = findViewById(R.id.nextButton);
+        Button nameButton = findViewById(R.id.nameButton);
+        Button monthlyBudgetButton = findViewById(R.id.monthlyBudgetButton);
+        Button monthlySaveGoalButton = findViewById(R.id.monthlySaveGoalButton);
+        Button savingsButton = findViewById(R.id.describeSavingsButton);
+        Button automaticSavingsButton = findViewById(R.id.automaticSavingsButton);
+        Button nextButton = findViewById(R.id.nextButton);
 
+        nameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InformationActivity.this, NameActivity.class);
+                startActivity(intent);
+            }
+        });
+        monthlyBudgetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(InformationActivity.this, ChangeBudget.class);
+                startActivity(intent);
+            }
+        });
+
+        monthlySaveGoalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(InformationActivity.this, ChangeSavings.class);
+                startActivity(intent);
+            }
+        });
+        savingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(InformationActivity.this, DescribeSavings.class);
+                startActivity(intent);
+            }
+        });
+        automaticSavingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start the activity to display change_budget.xml
+                Intent intent = new Intent(InformationActivity.this, ChangeAutoSavings.class);
+                startActivity(intent);
+            }
+        });
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
