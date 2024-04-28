@@ -1,21 +1,23 @@
 package com.zybooks.cop4656project;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeFragment extends Fragment {
 
     //Creates two static ints that can be referenced in other activities and xml files.
     public static int initialBudget = 5000;
@@ -27,78 +29,68 @@ public class HomeActivity extends AppCompatActivity {
     public static int savings1AmountLeft = savings1Goal - savings1AmountSaved;
 
     //Creates the object pieChart class.
-    PieChart pieChart;
-    PieChart savings1pieChart;
+    private PieChart pieChart;
+    private PieChart savings1pieChart;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
-
-        if (savedInstanceState == null) {
-            // Begin a new FragmentTransaction for adding a HomeFragment
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            // Add the HomeFragment to the fragment container
-            fragmentTransaction.setReorderingAllowed(true)
-                    .add(R.id.fragment_container, new HomeFragment())
-                    .commit();
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.home, container, false);
 
         //This references the pieChartLayout so that we can have the layout act like a button.
-        LinearLayout pieChartLayout = findViewById(R.id.pieChartView);
+        LinearLayout pieChartLayout = view.findViewById(R.id.pieChartView);
 
         pieChartLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, PieChartActivity.class);
+                Intent intent = new Intent(requireActivity(), PieChartActivity.class);
                 startActivity(intent);
             }
         });
 
         //This references the pieChartLayout so that we can have the layout act like a button.
-        LinearLayout settings1PieChartLayout = findViewById(R.id.savings1pieChartView);
+        LinearLayout settings1PieChartLayout = view.findViewById(R.id.savings1pieChartView);
 
         settings1PieChartLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SavingsActivity.class);
+                Intent intent = new Intent(requireActivity(), SavingsActivity.class);
                 startActivity(intent);
             }
         });
 
-
-
         // Find the TextView by its ID
-        TextView textView = findViewById(R.id.addStatementButton);
+        TextView textView = view.findViewById(R.id.addStatementButton);
 
         // Set OnClickListener to open InputSpending activity when the TextView is clicked
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, InputSpending.class);
+                Intent intent = new Intent(requireActivity(), InputSpending.class);
                 startActivity(intent);
             }
         });
 
         // Set OnClickListener for the settings button
-        Button settingsButton = findViewById(R.id.bottomRightButton);
+        Button settingsButton = view.findViewById(R.id.bottomRightButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the SettingsActivity when the button is clicked
-                Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+                Intent settingsIntent = new Intent(requireActivity(), SettingsActivity.class);
                 startActivity(settingsIntent);
             }
         });
 
         //Grabs the id for the pieChart so we can update how it looks.
-        pieChart = findViewById(R.id.piechart);
-        savings1pieChart = findViewById(R.id.savings1piechart);
+        pieChart = view.findViewById(R.id.piechart);
+        savings1pieChart = view.findViewById(R.id.savings1piechart);
 
         //Calls to setData for the pie chart.
         setData();
+
+        return view;
     }
 
     private void setData() {
@@ -137,10 +129,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         setData();
     }
-
 }

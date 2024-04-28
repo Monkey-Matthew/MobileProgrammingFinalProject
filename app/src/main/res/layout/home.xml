@@ -1,256 +1,267 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:background="@color/black"
-    android:clickable="true"
-    android:focusable="true">
+    android:layout_height="match_parent">
 
+    <LinearLayout
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewGraph"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_home"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:elevation="10dp"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:background="@color/black"
+        android:clickable="true"
+        android:focusable="true">
 
 
-        <!-- This is the code for the card at the top-->
-        <LinearLayout
-            android:id="@+id/pieChartView"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewGraph"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:weightSum="2">
+            android:layout_height="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:elevation="10dp"
+            >
 
 
-            <!--This is the pie chart code-->
-
-            <org.eazegraph.lib.charts.PieChart
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/piechart"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:padding="6dp"
-                android:layout_weight="1"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="15dp"
-
-                />
-
-            <!-- This is the code for the right hand side of the card at the top-->
+            <!-- This is the code for the card at the top-->
             <LinearLayout
-                android:id="@+id/orangeLinearLayout"
-                android:layout_width="0dp"
+                android:id="@+id/pieChartView"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:background="@color/orange_background"
-                android:gravity="center_vertical"
-                >
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:weightSum="2">
 
+
+                <!--This is the pie chart code-->
+
+                <org.eazegraph.lib.charts.PieChart
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/piechart"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:padding="6dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+
+                    />
+
+                <!-- This is the code for the right hand side of the card at the top-->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp">
+                    android:id="@+id/orangeLinearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:background="@color/orange_background"
+                    android:gravity="center_vertical"
+                    >
 
-                    <!--View to display the black color icon (can always be adjusted later)-->
-                    <View
-                        android:layout_width="15dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/BudgetLeft"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp">
 
-                    <!--Text view to display Amount Spent-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="5dp"
-                        android:text="Amount Spent"
-                        android:textColor="@color/BudgetSpent"
-                        android:textStyle="bold"
-                        />
+                        <!--View to display the black color icon (can always be adjusted later)-->
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/BudgetLeft"/>
 
-                </LinearLayout>
+                        <!--Text view to display Amount Spent-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="5dp"
+                            android:text="Amount Spent"
+                            android:textColor="@color/BudgetSpent"
+                            android:textStyle="bold"
+                            />
 
-                <!--Linear layout to display Budget Left-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp">
+                    </LinearLayout>
 
-                    <!--View to display the orange color icon (can always be adjusted later-->
-                    <View
-                        android:layout_width="15dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/BudgetSpent"/>
+                    <!--Linear layout to display Budget Left-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp">
 
-                    <!--Text view to Budget Left text -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Budget Left"
-                        android:textColor="@color/BudgetSpent"
-                        android:textStyle="bold"
-                        android:paddingLeft="5dp"
-                        />
+                        <!--View to display the orange color icon (can always be adjusted later-->
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/BudgetSpent"/>
+
+                        <!--Text view to Budget Left text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Budget Left"
+                            android:textColor="@color/BudgetSpent"
+                            android:textStyle="bold"
+                            android:paddingLeft="5dp"
+                            />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Add a TextView for the title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="130dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Savings"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="169dp">
 
+            <TableRow>
 
-    <!-- Add a TextView for the title -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="130dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Savings"
-            android:textColor="@color/orange"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-
-    </LinearLayout>
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="169dp">
-
-        <TableRow>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/savings1graph"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="20dp"
-                android:elevation="10dp">
-
-                <!-- Add a TextView for the title -->
-                <TextView
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/savings1graph"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Savings 1"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />'
-                <!-- This is the code for the card at the top-->
-                <LinearLayout
-                    android:id="@+id/savings1pieChartView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="vertical">
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="20dp"
+                    android:elevation="10dp">
 
-
-                    <!--This is the pie chart code-->
-
-
-                    <org.eazegraph.lib.charts.PieChart xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/savings1piechart"
+                    <!-- Add a TextView for the title -->
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="1"
-                        android:padding="6dp" />
-
-
-                    <!-- This is the code for the right hand side of the card at the top-->
+                        android:layout_height="2dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Savings 1"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />'
+                    <!-- This is the code for the card at the top-->
                     <LinearLayout
-                        android:id="@+id/savings1orangeLinearLayout"
+                        android:id="@+id/savings1pieChartView"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@color/orange_background"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:orientation="vertical">
 
 
-                        <LinearLayout
+                        <!--This is the pie chart code-->
+
+
+                        <org.eazegraph.lib.charts.PieChart xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/savings1piechart"
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="15dp">
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:padding="6dp" />
 
 
-                            <!--View to display the black color icon (can always be adjusted later)-->
-                            <View
-                                android:layout_width="12dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/BudgetLeft" />
-
-
-                            <!--Text view to display Amount Spent-->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp"
-                                android:paddingLeft="5dp"
-                                android:text="Amount Saved"
-                                android:textColor="@color/BudgetSpent"
-                                android:textStyle="bold" />
-
-
-                        </LinearLayout>
-
-
-                        <!--Linear layout to display Budget Left-->
+                        <!-- This is the code for the right hand side of the card at the top-->
                         <LinearLayout
+                            android:id="@+id/savings1orangeLinearLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp">
+                            android:layout_height="60dp"
+                            android:background="@color/orange_background"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
 
-                            <!--View to display the orange color icon (can always be adjusted later-->
-                            <View
-                                android:layout_width="15dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/BudgetSpent" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="15dp">
 
 
-                            <!--Text view to Budget Left text -->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="5dp"
-                                android:text="Savings left"
-                                android:textColor="@color/BudgetSpent"
-                                android:textStyle="bold" />
+                                <!--View to display the black color icon (can always be adjusted later)-->
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/BudgetLeft" />
+
+
+                                <!--Text view to display Amount Spent-->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="15dp"
+                                    android:paddingLeft="5dp"
+                                    android:text="Amount Saved"
+                                    android:textColor="@color/BudgetSpent"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+
+                            <!--Linear layout to display Budget Left-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="5dp">
+
+
+                                <!--View to display the orange color icon (can always be adjusted later-->
+                                <View
+                                    android:layout_width="15dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/BudgetSpent" />
+
+
+                                <!--Text view to Budget Left text -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="5dp"
+                                    android:text="Savings left"
+                                    android:textColor="@color/BudgetSpent"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
 
 
                         </LinearLayout>
@@ -259,49 +270,47 @@
                     </LinearLayout>
 
 
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
 
 
 
 
-        </TableRow>
+            </TableRow>
 
 
-    </TableLayout>
+        </TableLayout>
 
 
 
-    <TextView
-        android:id="@+id/addStatementButton"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:padding="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="Add a Statement to the Budget"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@drawable/rounded_background"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true"/>
+        <TextView
+            android:id="@+id/addStatementButton"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:padding="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Add a Statement to the Budget"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_background"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
 
 
-    <Button
-        android:id="@+id/bottomRightButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="225dp"
-        android:layout_marginTop="50dp"
-        android:text="Settings" />
+        <Button
+            android:id="@+id/bottomRightButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="225dp"
+            android:layout_marginTop="50dp"
+            android:text="Settings" />
 
+    </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
