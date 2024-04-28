@@ -11,6 +11,7 @@ public class AddToSavings extends AppCompatActivity
 {
     //Initial budget value
     int savings1AmountSaved = HomeActivity.savings1AmountSaved;
+    int budgetSpent = HomeActivity.budgetSpent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,12 @@ public class AddToSavings extends AppCompatActivity
                 // Convert the string to an integer
                 savings1AmountSaved = savings1AmountSaved + Integer.parseInt(newBudgetString);
 
+                budgetSpent = budgetSpent + Integer.parseInt(newBudgetString);
+
                 // Update the value of HomeActivity.initialBudget
                 HomeActivity.savings1AmountSaved = savings1AmountSaved;
+
+                HomeActivity.budgetSpent = budgetSpent;
 
                 // Finish the current activity and go back to the previous activity
                 finish();
