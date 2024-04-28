@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.zybooks.cop4656project.models.Budget;
 
@@ -18,5 +19,10 @@ public interface BudgetDao {
 
     @Query("SELECT COUNT(*) FROM budget")
     LiveData<Integer> countBudgets();
+    @Query("SELECT * FROM budget LIMIT 1")
+    LiveData<Budget> getBudget();
+
+    @Update
+    void updateMonthlyIncome(Budget budget);
 }
 

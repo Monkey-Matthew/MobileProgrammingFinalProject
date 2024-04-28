@@ -14,7 +14,7 @@ public class Budget {
 
     @ColumnInfo(name = "name")
     public String name;
-    @ColumnInfo(name = "monthly_budget")
+    @ColumnInfo(name = "monthly_income")
     public double monthlyIncome;
     @ColumnInfo(name = "general_monthly_save_goal")
     public double monthlySaveGoal;
@@ -41,15 +41,15 @@ public class Budget {
     //getters
     public long getId() { return id; }
     public String getName() { return name;}
-    public double getMonthlyBudget() { return monthlyIncome; }
+    public double getMonthlyIncome() { return monthlyIncome; }
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
     public Date getCurrentDate() { return currentDate; }
     public long getSavingsType() { return savingsType; }
     public boolean isAutoSavings() { return autoSavings; }
 
     //setters for values that can be changed
-    public void setMonthlyBudget(double monthlyBudget) {
-        this.monthlyIncome = monthlyBudget;
+    public void setMonthlyIncome(double monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
     }
     public void setMonthlySaveGoal(double monthlySaveGoal) {
         this.monthlySaveGoal = monthlySaveGoal;

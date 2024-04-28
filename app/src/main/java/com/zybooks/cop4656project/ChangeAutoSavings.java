@@ -18,7 +18,7 @@ public class ChangeAutoSavings extends AppCompatActivity
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the current activity and go back to the previous activity
+
                 finish();
             }
         });

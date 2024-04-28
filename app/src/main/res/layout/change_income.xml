@@ -7,7 +7,7 @@
         android:id="@+id/edit_text_new_budget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter budget amount"
+        android:hint="Enter new income"
         android:text=""
         android:inputType="number" />
 

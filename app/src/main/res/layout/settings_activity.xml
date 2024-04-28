@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Welcome, User!"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_below="@id/text_app_title"
@@ -32,10 +31,10 @@
 
     <!-- Change Spend Budget Button -->
     <Button
-        android:id="@+id/changeBudgetButton"
+        android:id="@+id/changeIncomeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Your Spend Budget"
+        android:text="Change Your Monthly Income"
         android:layout_below="@id/text_welcome_message"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
@@ -46,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Your Save Goal"
-        android:layout_below="@id/changeBudgetButton"
+        android:layout_below="@id/changeIncomeButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
@@ -74,8 +73,8 @@
         android:id="@+id/button_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="480dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="175dp"
         android:text="Reset Button"/>
 
     <Button
@@ -83,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="75dp"
         android:text="Back" />
 
 </RelativeLayout>

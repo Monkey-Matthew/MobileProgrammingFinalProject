@@ -22,10 +22,9 @@ public class BudgetRepository {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private static BudgetRepository mBudgetRepo;
     private final BudgetDao mBudgetDao;
-    private final CategoryDao mCategoryDao;
     private final TransactionDao mTransactionDao;
     private final SavingsGoalDao mSavingsGoalDao;
-    private LiveData<Integer> budgetCount;
+    private final LiveData<Integer> budgetCount;
 
     public static BudgetRepository getInstance(Context context) {
         if(mBudgetRepo == null) {
@@ -49,15 +48,28 @@ public class BudgetRepository {
                 .build();
 
         mBudgetDao = database.budgetDao();
-        mCategoryDao = database.categoryDao();
         mTransactionDao = database.transactionDao();
         mSavingsGoalDao = database.savingsGoalDao();
         budgetCount = mBudgetDao.countBudgets();
     }
 
+    public LiveData<Budget> getBudget() {
+        return mBudgetDao.getBudget();
+    }
+
     public void addBudget(Budget budget) {
         mDatabaseExecutor.execute(() -> {
             mBudgetDao.insert(budget);
+        });
+    }
+    public void deleteBudget(Budget budget) {
+        mDatabaseExecutor.execute(() -> {
+            mBudgetDao.deleteBudget(budget);
+        });
+    }
+    public void updateBudget(Budget budget) {
+        mDatabaseExecutor.execute(() -> {
+            mBudgetDao.updateMonthlyIncome(budget);
         });
     }
     public void addTransaction(Transaction transaction) {
