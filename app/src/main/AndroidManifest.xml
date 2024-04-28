@@ -25,6 +25,8 @@
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".InputSpending"></activity>
         <activity android:name=".PieChartActivity"></activity>
+        <activity android:name=".AddToSavings"></activity>
+        <activity android:name=".RemoveFromSavings"></activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".ChangeBudget"></activity>
         <activity android:name=".ChangeSavings"></activity>

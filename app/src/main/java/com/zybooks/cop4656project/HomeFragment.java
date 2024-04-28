@@ -136,6 +136,10 @@ public class HomeFragment extends Fragment {
         budgetSpent = HomeActivity.budgetSpent;
         budgetLeft = initialBudget - budgetSpent;
 
+        savings1Goal = HomeActivity.savings1Goal;
+        savings1AmountSaved = HomeActivity.savings1AmountSaved;
+        savings1AmountLeft = savings1Goal - savings1AmountSaved;
+
         setData();
     }
 }

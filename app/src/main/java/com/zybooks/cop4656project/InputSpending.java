@@ -20,6 +20,8 @@ public class InputSpending extends AppCompatActivity {
         // Find the EditText for price by its ID
         EditText editTextPrice = findViewById(R.id.editTextPrice);
 
+        Button backButton = findViewById(R.id.button_back);
+
         Button submitButton = findViewById(R.id.button_submit);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +38,14 @@ public class InputSpending extends AppCompatActivity {
 
                 finish();
 
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish the current activity and go back to the previous activity
+                finish();
             }
         });
 
