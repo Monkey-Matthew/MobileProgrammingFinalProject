@@ -16,7 +16,7 @@ public class PieChartActivity extends AppCompatActivity {
 
     //Declares and initializes 2 variables which are referenced from the SecondActivity.java file.
     int budgetSpent = HomeActivity.budgetSpent;
-    int budgetLeft = HomeActivity.budgetLeft;
+    int budgetLeft = HomeActivity.initialBudget - HomeActivity.budgetSpent;
 
     //Creates the object of TextView and PieChart class.
     TextView textViewSpent, textViewBudgetLeft;
@@ -52,7 +52,7 @@ public class PieChartActivity extends AppCompatActivity {
     {
 
         //Assigns the text to be what is defined in SecondActivity.java values for budgetSpent and budgetLeft.
-        textViewSpent.setText(String.valueOf(budgetSpent));
+        textViewSpent.setText(String.valueOf(HomeActivity.budgetSpent));
         textViewBudgetLeft.setText(String.valueOf(budgetLeft));
 
         //Set the data and color to the pie chart (we can always change colors later)

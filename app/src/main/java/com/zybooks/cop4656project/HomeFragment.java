@@ -20,13 +20,13 @@ import org.eazegraph.lib.models.PieModel;
 public class HomeFragment extends Fragment {
 
     //Creates two static ints that can be referenced in other activities and xml files.
-    public static int initialBudget = 5000;
-    public static int budgetSpent = 3000;
-    public static int budgetLeft = initialBudget - budgetSpent;
+    int initialBudget = HomeActivity.initialBudget;
+    int budgetSpent = HomeActivity.budgetSpent;
+    int budgetLeft = initialBudget - budgetSpent;
 
-    public static int savings1Goal = 10000;
-    public static int savings1AmountSaved = 3000;
-    public static int savings1AmountLeft = savings1Goal - savings1AmountSaved;
+    int savings1Goal = HomeActivity.savings1Goal;
+    int savings1AmountSaved = HomeActivity.savings1AmountSaved;
+    int savings1AmountLeft = savings1Goal - savings1AmountSaved;
 
     //Creates the object pieChart class.
     private PieChart pieChart;
@@ -131,6 +131,10 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        initialBudget = HomeActivity.initialBudget;
+        budgetSpent = HomeActivity.budgetSpent;
+        budgetLeft = initialBudget - budgetSpent;
 
         setData();
     }
