@@ -28,10 +28,10 @@ public class ChangeIncome extends AppCompatActivity {
                 editText.setText(String.valueOf(budget.getMonthlyIncome()));
             }
         });
-
         setupButtons();
     }
 
+    //set up the change monthly income on click of the button
     private void setupButtons() {
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);
@@ -41,8 +41,8 @@ public class ChangeIncome extends AppCompatActivity {
                 applyChangesButton.setOnClickListener(v -> {
                     try {
                         double newIncome = Double.parseDouble(editText.getText().toString());
-                        budget.setMonthlyIncome(newIncome); // Update the budget with new income
-                        mBudgetRepo.updateIncome(budget); // Persist the updated budget
+                        budget.setMonthlyIncome(newIncome);
+                        mBudgetRepo.updateIncome(budget);
                         Toast.makeText(this, "Monthly income updated.", Toast.LENGTH_SHORT).show();
                         finish();
                     } catch (NumberFormatException e) {
@@ -53,7 +53,6 @@ public class ChangeIncome extends AppCompatActivity {
                 Toast.makeText(this, "No budget data available.", Toast.LENGTH_SHORT).show();
             }
         });
-
         backButton.setOnClickListener(v -> finish());
     }
 }

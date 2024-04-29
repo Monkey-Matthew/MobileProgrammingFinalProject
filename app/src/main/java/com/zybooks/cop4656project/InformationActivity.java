@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.SwitchCompat;  // Import for SwitchCompat
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zybooks.cop4656project.models.Budget;
-import com.zybooks.cop4656project.repo.BudgetAppDatabase;
 import com.zybooks.cop4656project.repo.BudgetRepository;
 
 import java.util.Date;
@@ -24,13 +20,14 @@ public class InformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
+        //initialize all edittexts in the information screen
         final EditText nameEditText = findViewById(R.id.name_edit_text);
         final EditText monthlyIncomeEditText = findViewById(R.id.editTextPrice);
         final EditText monthlySaveGoalEditText = findViewById(R.id.save_goal_edit_text);
         final RadioGroup savingsTypeRadioGroup = findViewById(R.id.radioGroupSavingsType);
-        final SwitchCompat autoSavingsSwitch = findViewById(R.id.my_switch);  // Changed to SwitchCompat
 
         Button submitButton = findViewById(R.id.button_submit);
+        //where the magic happens, parse all input and validate,
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +44,10 @@ public class InformationActivity extends AppCompatActivity {
                 }
 
                 int savingsType = getSavingsTypeFromRadioGroup(savingsTypeRadioGroup);
-                boolean autoSavings = autoSavingsSwitch.isChecked();
 
                 Date currentDate = new Date();
-
-                Budget budget = new Budget(0, name, monthlyIncome, currentDate, monthlySaveGoal, savingsType, autoSavings, 0);
-
+                //create new budget and insert it into the database
+                Budget budget = new Budget(0, name, monthlyIncome, currentDate, monthlySaveGoal, savingsType,0);
                 saveBudget(budget);
 
                 Intent intent = new Intent(InformationActivity.this, HomeActivity.class);
@@ -60,12 +55,14 @@ public class InformationActivity extends AppCompatActivity {
             }
         });
     }
+    //get the type of savings
     private int getSavingsTypeFromRadioGroup(RadioGroup radioGroup) {
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
         View radioButton = radioGroup.findViewById(radioButtonID);
         return radioGroup.indexOfChild(radioButton);
     }
 
+    //insert budget into the database
     private void saveBudget(Budget budget) {
         BudgetRepository mBudgetRepo = BudgetRepository.getInstance(getApplicationContext());
         mBudgetRepo.addBudget(budget);

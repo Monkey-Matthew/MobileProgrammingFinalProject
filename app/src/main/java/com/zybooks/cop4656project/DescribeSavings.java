@@ -43,10 +43,11 @@ public class DescribeSavings extends AppCompatActivity {
             } else {
                 Toast.makeText(DescribeSavings.this, "No existing budget found", Toast.LENGTH_SHORT).show();
             }
-            finish(); // Finish activity after update
+            finish();
         });
     }
 
+    //get the savings type from the radio group
     private int getSavingsTypeFromRadioGroup(RadioGroup radioGroup) {
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
         int idx = radioGroup.indexOfChild(findViewById(radioButtonID));

@@ -27,6 +27,7 @@ public class SavingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.savings);
 
+        //initalize all components needed for the activity
         BudgetRepository mbudgetRepo = BudgetRepository.getInstance(this);
         pieChart = findViewById(R.id.savings1piechart);
         TextView textViewGoalStatus = findViewById(R.id.textViewGoalStatus);
@@ -78,7 +79,7 @@ public class SavingsActivity extends AppCompatActivity {
             case 3: // Conservative
                 return saveGoal * 0.5; //50% of the goal
             default:
-                return saveGoal; // Default to full goal if type is unknown
+                return saveGoal; //default to full goal if type is unknown
         }
     }
 

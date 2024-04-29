@@ -15,8 +15,8 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class RemoveFromSavings extends AppCompatActivity {
 
+    //essentially the same as addtosavings, but with remove
     private BudgetRepository mbudgetRepo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

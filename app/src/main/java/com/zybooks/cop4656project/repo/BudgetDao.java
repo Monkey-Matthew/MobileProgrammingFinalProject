@@ -11,12 +11,11 @@ import com.zybooks.cop4656project.models.Budget;
 
 @Dao
 public interface BudgetDao {
+    //various methods for queries and updates
     @Insert
     void insert(Budget budget);
-
     @Delete
     void deleteBudget(Budget budget);
-
     @Query("SELECT COUNT(*) FROM budget")
     LiveData<Integer> countBudgets();
     @Query("SELECT * FROM budget LIMIT 1")
@@ -27,8 +26,6 @@ public interface BudgetDao {
     void updateSavings(Budget budget);
     @Update
     void updateSavingHabits(Budget budget);
-    @Update
-    void updateAutoSavings(Budget budget);
     @Update
     void updateAmountSaved(Budget budget);
 }

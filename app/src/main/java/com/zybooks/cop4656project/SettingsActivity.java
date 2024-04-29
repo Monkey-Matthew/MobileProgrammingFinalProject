@@ -21,11 +21,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-        // Find the button in settings_activity.xml
         Button openChangeIncomeButton = findViewById(R.id.changeIncomeButton);
         Button openChangeSavingButton = findViewById(R.id.button_change_save_goal);
         Button describeSavingButton = findViewById(R.id.button_describe_saving);
-        Button changeAutoSavingsButton = findViewById(R.id.button_change_auto_savings);
         Button resetButton = findViewById(R.id.button_reset);
         Button backButton = findViewById(R.id.button_back);
 
@@ -34,11 +32,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         updateWelcomeMessage();
 
-        // Set OnClickListener for the button
         openChangeIncomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
                 Intent intent = new Intent(SettingsActivity.this, ChangeIncome.class);
                 startActivity(intent);
             }
@@ -47,7 +43,6 @@ public class SettingsActivity extends AppCompatActivity {
         openChangeSavingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
                 Intent intent = new Intent(SettingsActivity.this, ChangeSavings.class);
                 startActivity(intent);
             }
@@ -60,22 +55,14 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        changeAutoSavingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the activity to display change_budget.xml
-                Intent intent = new Intent(SettingsActivity.this, ChangeAutoSavings.class);
-                startActivity(intent);
-            }
-        });
-
+        //if the user resets, delete the budget and all transactions
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mbudgetRepo.getBudget().observe(SettingsActivity.this, budget -> {
                     if (budget != null) {
                         mbudgetRepo.deleteBudget(budget);
+                        mbudgetRepo.deleteAllTransactions();
 
                         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -88,7 +75,6 @@ public class SettingsActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the current activity and go back to the previous activity
                 finish();
             }
         });

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class StatementAdapter extends ArrayAdapter<Transaction> {
+    //adapter to display transactions
     private int resourceLayout;
     private Context mContext;
     private BudgetRepository mbudgetRepo;
@@ -29,6 +30,7 @@ public class StatementAdapter extends ArrayAdapter<Transaction> {
         this.mbudgetRepo = BudgetRepository.getInstance(context);
     }
 
+    //getview to pull take transaction data and display it
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -39,25 +41,25 @@ public class StatementAdapter extends ArrayAdapter<Transaction> {
             v = vi.inflate(resourceLayout, null);
         }
 
-        Transaction p = getItem(position);
+        Transaction transaction = getItem(position);
 
-        if (p != null) {
-            TextView tt1 = v.findViewById(R.id.textViewDescription);
-            TextView tt2 = v.findViewById(R.id.textViewAmount);
-            TextView tt3 = v.findViewById(R.id.textViewDate);
+        if (transaction != null) {
+            TextView tv1 = v.findViewById(R.id.textViewDescription);
+            TextView tv2 = v.findViewById(R.id.textViewAmount);
+            TextView tv3 = v.findViewById(R.id.textViewDate);
             Button deleteButton = v.findViewById(R.id.deleteButton);
 
-            tt1.setText(p.getDescription());
-            tt2.setText(String.format(Locale.getDefault(), "$%.2f", p.getAmount()));
-            tt3.setText(new SimpleDateFormat("MM/dd", Locale.getDefault()).format(p.getDate()));
+            tv1.setText(transaction.getDescription());
+            tv2.setText(String.format(Locale.getDefault(), "$%.2f", transaction.getAmount()));
+            tv3.setText(new SimpleDateFormat("MM/dd", Locale.getDefault()).format(transaction.getDate()));
 
+            //when the delete button is clicked remove the item from the list
             deleteButton.setOnClickListener(view -> {
-                remove(p);
-                mbudgetRepo.deleteTransaction(p);
+                remove(transaction);
+                mbudgetRepo.deleteTransaction(transaction);
                 notifyDataSetChanged();
             });
         }
-
         return v;
     }
 }

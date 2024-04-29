@@ -59,16 +59,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Change Automatic Savings Account Button -->
-    <Button
-        android:id="@+id/button_change_auto_savings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Your Automatic Savings"
-        android:layout_below="@id/button_describe_saving"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
-
     <Button
         android:id="@+id/button_reset"
         android:layout_width="wrap_content"

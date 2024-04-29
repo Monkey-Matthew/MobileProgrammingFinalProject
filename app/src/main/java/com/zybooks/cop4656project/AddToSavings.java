@@ -15,6 +15,7 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class AddToSavings extends AppCompatActivity {
 
+    //declare budget repository locally
     private BudgetRepository mbudgetRepo;
 
     @Override
@@ -22,12 +23,15 @@ public class AddToSavings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_tosavings);
 
+        //initialize budget repository
         mbudgetRepo = BudgetRepository.getInstance(this);
 
+        //initialize buttons
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);
         EditText editText = findViewById(R.id.edit_text_add_savings);
 
+        //savings are updated on click of apply
         applyChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +44,7 @@ public class AddToSavings extends AppCompatActivity {
             }
         });
 
+        //finish the activity if the back button is clicked
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +52,7 @@ public class AddToSavings extends AppCompatActivity {
             }
         });
     }
+    //use livedata to ensure savings are only added once
     private void updateSavings(double addedSavings) {
         LiveData<Budget> liveData = mbudgetRepo.getBudget();
         liveData.observe(this, new Observer<Budget>() {

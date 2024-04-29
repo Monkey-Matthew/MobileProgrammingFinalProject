@@ -12,25 +12,36 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button welcomeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        welcomeButton = findViewById(R.id.welcome_button);
+        welcomeButton.setVisibility(View.INVISIBLE);
+
+        //need the budgetrepository to check if there is an item in the database
         BudgetRepository budgetRepository = new BudgetRepository(getApplication());
         budgetRepository.getBudgetCount().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer count) {
-                Intent intent;
                 if (count != null && count > 0) {
-                    intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    finish();
                 } else {
-                    intent = new Intent(MainActivity.this, InformationActivity.class);
+                    welcomeButton.setVisibility(View.VISIBLE);
                 }
-                startActivity(intent);
+            }
+        });
+
+        welcomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, InformationActivity.class));
                 finish();
             }
         });
     }
 }
-

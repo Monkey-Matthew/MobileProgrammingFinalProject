@@ -155,14 +155,13 @@
             android:layout_marginLeft="20dp" />
     </RadioGroup>
 
-    <!--Linear Layout that displays automatic savings-->
+    <!--Linear Layout that displays automatic savings
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <!--Displays Use Automatic Savings?:-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -173,15 +172,11 @@
             android:textSize="15dp"
             android:gravity="center"/>
 
-        <!--Switch to turn on and off-->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/my_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-
-
-    </LinearLayout>
+            -->
 
     <!--Linear Layout to display submit button-->
     <LinearLayout
@@ -194,7 +189,7 @@
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="170dp"
             android:layout_marginLeft="145dp"
             android:text="Submit" />
 

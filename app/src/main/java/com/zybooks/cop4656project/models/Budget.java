@@ -22,22 +22,18 @@ public class Budget {
     @ColumnInfo(name = "current_date")
     public Date currentDate;
 
-    @ColumnInfo(name = "auto_savings")
-    public boolean autoSavings;
-
     @ColumnInfo(name = "amount_saved")
     public double amountSaved;
 
     //constructor
     public Budget(long id, String name, double monthlyIncome, Date currentDate,
-                  double monthlySaveGoal, long savingsType, boolean autoSavings, double amountSaved) {
+                  double monthlySaveGoal, long savingsType, double amountSaved) {
         this.id = id;
         this.name = name;
         this.monthlyIncome = monthlyIncome;
         this.currentDate = currentDate;
         this.monthlySaveGoal = monthlySaveGoal;
         this.savingsType = savingsType;
-        this.autoSavings = autoSavings;
         this.amountSaved = amountSaved;
     }
 
@@ -47,7 +43,6 @@ public class Budget {
     public double getMonthlyIncome() { return monthlyIncome; }
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
     public long getSavingsType() { return savingsType; }
-    public boolean getAutoSavings() { return autoSavings; }
     public double getAmountSaved() { return amountSaved; }
 
     //setters for values that can be changed
@@ -60,6 +55,5 @@ public class Budget {
     public void setSavingsType(int savingsType) {
         this.savingsType = savingsType;
     }
-    public void setAutoSavings(boolean autoSavings) { this.autoSavings = autoSavings; }
     public void setAmountSaved(double amountSaved) { this.amountSaved = amountSaved; }
 }

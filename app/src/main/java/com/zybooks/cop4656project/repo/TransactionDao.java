@@ -13,10 +13,13 @@ import java.util.List;
 
 @Dao
 public interface TransactionDao {
+    //method for insert, delete, and query
     @Insert
     void insert(Transaction transaction);
     @Delete
     void deleteTransaction(Transaction transaction);
     @Query("SELECT * FROM transactions ORDER BY date COLLATE NOCASE")
     LiveData<List<Transaction>> getTransactions();
+    @Query("DELETE FROM transactions")
+    void deleteAllTransactions();
 }

@@ -32,6 +32,7 @@ public class ChangeSavings extends AppCompatActivity {
         setupButtons();
     }
 
+    //similar to changeincome, just with savings
     private void setupButtons() {
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);

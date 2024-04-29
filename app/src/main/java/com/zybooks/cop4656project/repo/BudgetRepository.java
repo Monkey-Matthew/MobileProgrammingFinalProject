@@ -16,6 +16,7 @@ import com.zybooks.cop4656project.models.Transaction;
 
 public class BudgetRepository {
 
+    //background processes for adding data to the database
     private static final int NUMBER_OF_THREADS = 4;
     private static final ExecutorService mDatabaseExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -54,6 +55,7 @@ public class BudgetRepository {
         return mBudgetDao.getBudget();
     }
 
+    //all functions that make use of the daos
     public void addBudget(Budget budget) {
         mDatabaseExecutor.execute(() -> {
             mBudgetDao.insert(budget);
@@ -96,11 +98,6 @@ public class BudgetRepository {
             mBudgetDao.updateSavingHabits(budget);
         });
     }
-    public void updateAutoSavings(Budget budget) {
-        mDatabaseExecutor.execute(() -> {
-            mBudgetDao.updateAutoSavings(budget);
-        });
-    }
     public void updateAmountSaved(Budget budget) {
         mDatabaseExecutor.execute(() -> {
             mBudgetDao.updateAmountSaved(budget);
@@ -120,6 +117,11 @@ public class BudgetRepository {
 
     public LiveData<List<Transaction>> getTransactions() {
         return mTransactionDao.getTransactions();
+    }
+    public void deleteAllTransactions() {
+        mDatabaseExecutor.execute(() -> {
+            mTransactionDao.deleteAllTransactions();
+        });
     }
 
     public LiveData<Integer> getBudgetCount() {
