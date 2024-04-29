@@ -286,12 +286,28 @@
 
         <TextView
             android:id="@+id/addStatementButton"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
             android:padding="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
             android:text="Add a Statement to the Budget"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_background"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/viewStatementsButton"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_marginLeft="104dp"
+            android:layout_marginTop="20dp"
+            android:text="View Statements"
             android:textSize="18dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"

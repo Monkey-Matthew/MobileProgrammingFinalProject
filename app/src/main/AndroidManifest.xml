@@ -27,6 +27,7 @@
         <activity android:name=".PieChartActivity"></activity>
         <activity android:name=".AddToSavings"></activity>
         <activity android:name=".RemoveFromSavings"></activity>
+        <activity android:name=".ViewStatements"></activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".ChangeIncome"></activity>
         <activity android:name=".ChangeSavings"></activity>

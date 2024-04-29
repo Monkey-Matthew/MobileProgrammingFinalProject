@@ -72,6 +72,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        TextView viewStatementsTextView = view.findViewById(R.id.viewStatementsButton);
+
+        viewStatementsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireActivity(), ViewStatements.class);
+                startActivity(intent);
+            }
+        });
+
         // Set OnClickListener for the settings button
         Button settingsButton = view.findViewById(R.id.bottomRightButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/orange"
+        android:fontFamily="@font/obised"
+        android:text="Previous Statements"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_gravity="center"
+        android:gravity="center">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/dark_gray">
+
+    </TextView>
+
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_apply_changes"
+        android:layout_marginTop="570dp"
+        android:layout_marginLeft="155dp"
+        android:text="Back" />
+</LinearLayout>
