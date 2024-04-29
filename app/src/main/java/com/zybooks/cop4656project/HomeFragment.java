@@ -1,5 +1,6 @@
 package com.zybooks.cop4656project;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,71 +11,50 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+
+import com.zybooks.cop4656project.models.Budget;
+import com.zybooks.cop4656project.repo.BudgetRepository;
+
+
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+
 public class HomeFragment extends Fragment {
 
-    //Creates two static ints that can be referenced in other activities and xml files.
-    int initialBudget = HomeActivity.initialBudget;
-    int budgetSpent = HomeActivity.budgetSpent;
-    int budgetLeft = initialBudget - budgetSpent;
 
-    int savings1Goal = HomeActivity.savings1Goal;
-    int savings1AmountSaved = HomeActivity.savings1AmountSaved;
-    int savings1AmountLeft = savings1Goal - savings1AmountSaved;
-
-    //Creates the object pieChart class.
     private PieChart pieChart;
-    private PieChart savings1pieChart;
+    private PieChart savings1PieChart;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home, container, false);
 
-        //This references the pieChartLayout so that we can have the layout act like a button.
-        LinearLayout pieChartLayout = view.findViewById(R.id.pieChartView);
+        BudgetRepository budgetRepository = BudgetRepository.getInstance(requireContext());
 
-        pieChartLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), PieChartActivity.class);
-                startActivity(intent);
-            }
-        });
+        pieChart = view.findViewById(R.id.piechart);
+        savings1PieChart = view.findViewById(R.id.savings1piechart);
 
-        //This references the pieChartLayout so that we can have the layout act like a button.
-        LinearLayout settings1PieChartLayout = view.findViewById(R.id.savings1pieChartView);
+        view.findViewById(R.id.pieChartView).setOnClickListener(v ->
+                startActivity(new Intent(requireActivity(), PieChartActivity.class)));
+        view.findViewById(R.id.savings1pieChartView).setOnClickListener(v ->
+                startActivity(new Intent(requireActivity(), SavingsActivity.class)));
+        view.findViewById(R.id.addStatementButton).setOnClickListener(v ->
+                startActivity(new Intent(requireActivity(), InputSpending.class)));
+        view.findViewById(R.id.bottomRightButton).setOnClickListener(v ->
+                startActivity(new Intent(requireActivity(), SettingsActivity.class)));
 
-        settings1PieChartLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), SavingsActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        // Find the TextView by its ID
-        TextView textView = view.findViewById(R.id.addStatementButton);
-
-        // Set OnClickListener to open InputSpending activity when the TextView is clicked
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), InputSpending.class);
-                startActivity(intent);
-            }
-        });
-
+        budgetRepository.getBudget().observe(getViewLifecycleOwner(), this::updateUI);
 
         TextView viewStatementsTextView = view.findViewById(R.id.viewStatementsButton);
-
         viewStatementsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,74 +63,41 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set OnClickListener for the settings button
-        Button settingsButton = view.findViewById(R.id.bottomRightButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the SettingsActivity when the button is clicked
-                Intent settingsIntent = new Intent(requireActivity(), SettingsActivity.class);
-                startActivity(settingsIntent);
-            }
-        });
-
-        //Grabs the id for the pieChart so we can update how it looks.
-        pieChart = view.findViewById(R.id.piechart);
-        savings1pieChart = view.findViewById(R.id.savings1piechart);
-
-        //Calls to setData for the pie chart.
-        setData();
-
         return view;
     }
 
-    private void setData() {
-        // Clear any existing pie slices
-        pieChart.clearChart();
-        savings1pieChart.clearChart();
 
-        // Sets the data and the colors to the pie chart for the overall budget
-        pieChart.addPieSlice(
-                new PieModel(
-                        "Budget Spent",
-                        budgetSpent,
-                        Color.parseColor("#FF5722")));
-        pieChart.addPieSlice(
-                new PieModel(
-                        "Budget Left",
-                        budgetLeft,
-                        Color.parseColor("#000000")));
-
-        // Sets the data and the colors to the pie chart for savings 1
-        savings1pieChart.addPieSlice(
-                new PieModel(
-                        "Amount Saved",
-                        savings1AmountSaved,
-                        Color.parseColor("#FF5722")));
-        savings1pieChart.addPieSlice(
-                new PieModel(
-                        "Amount Left",
-                        savings1AmountLeft,
-                        Color.parseColor("#000000")));
+    private void updateUI(Budget budget) {
+        if (budget != null) {
+            double adjustedSaveGoal = calculateSaveGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
+            double budgetLeft = budget.getMonthlyIncome() - adjustedSaveGoal;
+            double savingsLeft = adjustedSaveGoal;
 
 
-        // Animates the pie charts
-        pieChart.startAnimation();
-        savings1pieChart.startAnimation();
+            pieChart.clearChart();
+            savings1PieChart.clearChart();
+
+            pieChart.addPieSlice(new PieModel("Spent", 0, Color.parseColor("#FF5722")));
+            pieChart.addPieSlice(new PieModel("Left", (float) budgetLeft, Color.parseColor("#000000")));
+
+            savings1PieChart.addPieSlice(new PieModel("Saved", 0, Color.parseColor("#FF5722")));
+            savings1PieChart.addPieSlice(new PieModel("Goal Left", (float) savingsLeft, Color.parseColor("#000000")));
+
+            pieChart.startAnimation();
+            savings1PieChart.startAnimation();
+        }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        initialBudget = HomeActivity.initialBudget;
-        budgetSpent = HomeActivity.budgetSpent;
-        budgetLeft = initialBudget - budgetSpent;
-
-        savings1Goal = HomeActivity.savings1Goal;
-        savings1AmountSaved = HomeActivity.savings1AmountSaved;
-        savings1AmountLeft = savings1Goal - savings1AmountSaved;
-
-        setData();
+    private double calculateSaveGoal(double saveGoal, long savingsType) {
+        switch ((int) savingsType) {
+            case 1: //aggressive
+                return saveGoal * 0.5;
+            case 2: //normal
+                return saveGoal * 0.75;
+            case 3: //conservative
+                return saveGoal;
+            default:
+                return saveGoal;
+        }
     }
 }

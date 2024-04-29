@@ -12,7 +12,6 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.zybooks.cop4656project.models.Budget;
-import com.zybooks.cop4656project.models.SavingsGoal;
 import com.zybooks.cop4656project.models.Transaction;
 
 public class BudgetRepository {
@@ -23,7 +22,6 @@ public class BudgetRepository {
     private static BudgetRepository mBudgetRepo;
     private final BudgetDao mBudgetDao;
     private final TransactionDao mTransactionDao;
-    private final SavingsGoalDao mSavingsGoalDao;
     private final LiveData<Integer> budgetCount;
 
     public static BudgetRepository getInstance(Context context) {
@@ -49,7 +47,6 @@ public class BudgetRepository {
 
         mBudgetDao = database.budgetDao();
         mTransactionDao = database.transactionDao();
-        mSavingsGoalDao = database.savingsGoalDao();
         budgetCount = mBudgetDao.countBudgets();
     }
 
@@ -93,29 +90,15 @@ public class BudgetRepository {
             mTransactionDao.insert(transaction);
         });
     }
-    public void addSavingsGoal(SavingsGoal goal) {
-        mDatabaseExecutor.execute(() -> {
-            mSavingsGoalDao.insert(goal);
-        });
-    }
 
     public void deleteTransaction(Transaction transaction) {
         mDatabaseExecutor.execute(() -> {
             mTransactionDao.deleteTransaction(transaction);
         });
     }
-    public void deleteSavingsGoal(SavingsGoal goal) {
-        mDatabaseExecutor.execute(() -> {
-            mSavingsGoalDao.deleteSavingsGoal(goal);
-        });
-    }
 
     public LiveData<List<Transaction>> getTransactions() {
         return mTransactionDao.getTransactions();
-    }
-
-    public LiveData<List<SavingsGoal>> getSavingsGoals() {
-        return mSavingsGoalDao.getSavingsGoals();
     }
 
     public LiveData<Integer> getBudgetCount() {
