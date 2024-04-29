@@ -13,6 +13,7 @@
     android:background="@color/black"
     android:gravity="center">
 
+    <!--Displays title of app-->
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
@@ -24,12 +25,14 @@
         android:layout_gravity="center"
         android:gravity="center"/>
 
+    <!--Linear layout to hold the name input-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
+        <!--Displays name:-->
         <TextView
             android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
@@ -39,6 +42,7 @@
             android:layout_marginLeft="20dp"
             />
 
+        <!--Lets users type their name-->
         <EditText
             android:id="@+id/name_edit_text"
             android:layout_width="150dp"
@@ -49,12 +53,14 @@
 
     </LinearLayout>
 
+    <!--Linear layout to display monthly income input-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
+        <!--Displays Monthly income:-->
         <TextView
             android:id="@+id/textViewPrice"
             android:layout_width="wrap_content"
@@ -64,6 +70,7 @@
             android:layout_marginLeft="20dp"
             />
 
+        <!--Lets the user input monthly income-->
         <EditText
             android:id="@+id/editTextPrice"
             android:layout_width="150dp"
@@ -74,12 +81,14 @@
 
     </LinearLayout>
 
+    <!--Linear layout to display Monthly Save Goal-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
+        <!--Displays Monthly Save Goal:-->
         <TextView
             android:id="@+id/dave_goal_text_view"
             android:layout_width="wrap_content"
@@ -89,6 +98,7 @@
             android:layout_marginLeft="20dp"
             />
 
+        <!--Lets the user input monthly save goal-->
         <EditText
             android:id="@+id/save_goal_edit_text"
             android:layout_width="150dp"
@@ -100,6 +110,7 @@
 
     </LinearLayout>
 
+    <!--Radio group that allows the user to select an option-->
     <RadioGroup
         android:id="@+id/radioGroupSavingsType"
         android:layout_width="match_parent"
@@ -108,6 +119,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="13dp">
 
+        <!--Displays Current Saving Habits:-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,6 +127,7 @@
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
+        <!--Option for aggressive:-->
         <RadioButton
             android:id="@+id/aggressive"
             android:layout_width="wrap_content"
@@ -123,6 +136,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"/>
 
+        <!--Option for normal:-->
         <RadioButton
             android:id="@+id/normal"
             android:layout_width="wrap_content"
@@ -131,6 +145,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"/>
 
+        <!--Option for conservative:-->
         <RadioButton
             android:id="@+id/conservative"
             android:layout_width="wrap_content"
@@ -140,12 +155,14 @@
             android:layout_marginLeft="20dp" />
     </RadioGroup>
 
+    <!--Linear Layout that displays automatic savings-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
+        <!--Displays Use Automatic Savings?:-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -156,6 +173,7 @@
             android:textSize="15dp"
             android:gravity="center"/>
 
+        <!--Switch to turn on and off-->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/my_switch"
             android:layout_width="wrap_content"
@@ -165,11 +183,13 @@
 
     </LinearLayout>
 
+    <!--Linear Layout to display submit button-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--Displays submit button-->
         <Button
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
