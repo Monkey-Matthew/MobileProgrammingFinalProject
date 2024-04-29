@@ -1,14 +1,15 @@
 package com.zybooks.cop4656project;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 
 import com.zybooks.cop4656project.models.Budget;
 import com.zybooks.cop4656project.models.Transaction;
@@ -24,7 +25,6 @@ public class HomeFragment extends Fragment {
     private PieChart savings1PieChart;
     private BudgetRepository mbudgetRepo;
 
-    //when the fragment is created initialize the view and budgetRepo
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class HomeFragment extends Fragment {
         pieChart = view.findViewById(R.id.piechart);
         savings1PieChart = view.findViewById(R.id.savings1piechart);
 
-        //set listeners for all of the buttons
         view.findViewById(R.id.pieChartView).setOnClickListener(v ->
                 startActivity(new Intent(requireActivity(), PieChartActivity.class)));
         view.findViewById(R.id.savings1pieChartView).setOnClickListener(v ->
@@ -45,23 +44,28 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(requireActivity(), ViewStatements.class)));
         view.findViewById(R.id.bottomRightButton).setOnClickListener(v ->
                 startActivity(new Intent(requireActivity(), SettingsActivity.class)));
-
-        mbudgetRepo.getBudget().observe(getViewLifecycleOwner(), this::loadTransactionsAndUpdateUI);
+        loadBudgetData();
 
         return view;
     }
 
-    //load the transactions to update the budget pie chart
-    private void loadTransactionsAndUpdateUI(Budget budget) {
+    //load the budget data from the repo
+    private void loadBudgetData() {
+        mbudgetRepo.getBudget().observe(getViewLifecycleOwner(), this::observeTransactions);
+    }
+
+    //update the charts based on the transactions
+    private void observeTransactions(Budget budget) {
         if (budget != null) {
             mbudgetRepo.getTransactions().observe(getViewLifecycleOwner(), transactions -> {
                 double totalSpent = calculateTotalSpent(transactions);
-                updateUI(budget, totalSpent);
+                updateBudgetPieChart(budget, totalSpent);
+                updateSavingsPieChart(budget);
             });
         }
     }
 
-    //get the total spent from the transactions
+    //get the total amount spent
     private double calculateTotalSpent(List<Transaction> transactions) {
         double total = 0;
         for (Transaction transaction : transactions) {
@@ -70,25 +74,26 @@ public class HomeFragment extends Fragment {
         return total;
     }
 
-    //update the pie charts to display the correct values from the database
-    private void updateUI(Budget budget, double totalSpent) {
-        double adjustedSaveGoal = calculateAdjustedGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
-        double budgetLeft = budget.getMonthlyIncome() - adjustedSaveGoal - totalSpent;
-        double savingsLeft = Math.max(0, adjustedSaveGoal - budget.getAmountSaved());
-
+    //update the budget chart
+    private void updateBudgetPieChart(Budget budget, double totalSpent) {
+        double budgetLeft = budget.getMonthlyIncome() - budget.getMonthlySaveGoal() - totalSpent;
         pieChart.clearChart();
-        savings1PieChart.clearChart();
-
         pieChart.addPieSlice(new PieModel("Spent", (float) totalSpent, Color.parseColor("#FF5722")));
         pieChart.addPieSlice(new PieModel("Left", (float) budgetLeft, Color.parseColor("#000000")));
+        pieChart.startAnimation();
+    }
 
+    //update the savings chart
+    private void updateSavingsPieChart(Budget budget) {
+        double adjustedSaveGoal = calculateAdjustedGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
+        double savingsLeft = Math.max(0, adjustedSaveGoal - budget.getAmountSaved());
+        savings1PieChart.clearChart();
         savings1PieChart.addPieSlice(new PieModel("Saved", (float) budget.getAmountSaved(), Color.parseColor("#FF5722")));
         savings1PieChart.addPieSlice(new PieModel("Goal Left", (float) savingsLeft, Color.parseColor("#000000")));
-
-        pieChart.startAnimation();
         savings1PieChart.startAnimation();
     }
 
+    //calculate savings based on what the user inputs
     private double calculateAdjustedGoal(double saveGoal, long savingsType) {
         switch ((int) savingsType) {
             case 1: //aggressive
