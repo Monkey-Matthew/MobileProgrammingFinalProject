@@ -29,5 +29,7 @@ public interface BudgetDao {
     void updateSavingHabits(Budget budget);
     @Update
     void updateAutoSavings(Budget budget);
+    @Update
+    void updateAmountSaved(Budget budget);
 }
 

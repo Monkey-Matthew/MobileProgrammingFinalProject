@@ -51,7 +51,7 @@ public class InformationActivity extends AppCompatActivity {
 
                 Date currentDate = new Date();
 
-                Budget budget = new Budget(0, name, monthlyIncome, currentDate, monthlySaveGoal, savingsType, autoSavings);
+                Budget budget = new Budget(0, name, monthlyIncome, currentDate, monthlySaveGoal, savingsType, autoSavings, 0);
 
                 saveBudget(budget);
 

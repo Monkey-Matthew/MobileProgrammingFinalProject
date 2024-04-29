@@ -1,128 +1,68 @@
 package com.zybooks.cop4656project;
 
-//Libraries
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
 import java.text.DecimalFormat;
 
+import com.zybooks.cop4656project.models.Budget;
+import com.zybooks.cop4656project.repo.BudgetRepository;
+
 public class SavingsActivity extends AppCompatActivity {
 
-
-    //Declares and initializes 2 variables which are referenced from the SecondActivity.java file.
-    int amountSaved = HomeActivity.savings1AmountSaved;
-    int amountLeft = HomeActivity.savings1Goal - HomeActivity.savings1AmountSaved;
-
-    double goalPercentage = ((double) amountSaved / (amountSaved + amountLeft)) * 100;
-
-
-    PieChart pieChart;
+    private PieChart pieChart;
+    private BudgetRepository budgetRepository;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.savings);
 
-        DecimalFormat df = new DecimalFormat("#.##");
-        String formattedGoalPercentage = df.format(goalPercentage);
-
-        // Grab reference to TextView
+        budgetRepository = BudgetRepository.getInstance(this);
+        pieChart = findViewById(R.id.savings1piechart);
         TextView textViewGoalStatus = findViewById(R.id.textViewGoalStatus);
-
-        // Set the text value for the TextView
-        textViewGoalStatus.setText("You are " +  formattedGoalPercentage + "% done.");
-
-        // Grab reference to TextView
         TextView amountLeftTextView = findViewById(R.id.amountLeftTextView);
-
-        // Set the text value for the TextView
-        amountLeftTextView.setText("$" +  amountLeft + " left to save out of $" + (amountLeft + amountSaved));
-
         Button backButton = findViewById(R.id.button_back);
-
-        // Find the TextView by its ID
         TextView addToSavingstextView = findViewById(R.id.addToSavingsButton);
         TextView removeFromSavingstextView = findViewById(R.id.removeFromSavingsButton);
 
-        // Set OnClickListener to open InputSpending activity when the TextView is clicked
-        addToSavingstextView.setOnClickListener(new View.OnClickListener() {
+        budgetRepository.getBudget().observe(this, new Observer<Budget>() {
+
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SavingsActivity.this, AddToSavings.class);
-                startActivity(intent);
+            public void onChanged(Budget budget) {
+                if (budget != null) {
+                    double amountSaved = budget.getAmountSaved();
+                    double savingsGoal = budget.getMonthlySaveGoal();
+                    double amountLeft = (savingsGoal - amountSaved);
+                    double goalPercentage = savingsGoal > 0 ? (double) amountSaved / savingsGoal * 100 : 0;
+
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    String formattedGoalPercentage = df.format(goalPercentage);
+
+                    textViewGoalStatus.setText("You are " + formattedGoalPercentage + "% done.");
+                    amountLeftTextView.setText("$" + amountLeft + " left to save out of $" + savingsGoal);
+
+                    pieChart.clearChart();
+                    pieChart.addPieSlice(new PieModel("Amount Saved", (float) amountSaved, Color.parseColor("#FF5722")));
+                    pieChart.addPieSlice(new PieModel("Amount Left", (float) amountLeft, Color.parseColor("#000000")));
+                    pieChart.startAnimation();
+                }
             }
         });
 
-        // Set OnClickListener to open InputSpending activity when the TextView is clicked
-        removeFromSavingstextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SavingsActivity.this, RemoveFromSavings.class);
-                startActivity(intent);
-            }
-        });
+        addToSavingstextView.setOnClickListener(v -> startActivity(new Intent(this, AddToSavings.class)));
+        removeFromSavingstextView.setOnClickListener(v -> startActivity(new Intent(this, RemoveFromSavings.class)));
 
-        //Grabs the ids for the textViews and the pie chart to alter them in the method below.
-        pieChart = findViewById(R.id.savings1piechart);
-
-        //Calls method to set the data and change the pie chart.
-        setData();
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Finish the current activity and go back to the previous activity
-                finish();
-            }
-        });
-    }
-
-    private void setData()
-    {
-        // Clear any existing pie slices
-        pieChart.clearChart();
-        //Set the data and color to the pie chart (we can always change colors later)
-        pieChart.addPieSlice(
-                new PieModel(
-                        "AmountSaved",
-                        amountSaved,
-                        Color.parseColor("#FF5722")));
-        pieChart.addPieSlice(
-                new PieModel(
-                        "AmountLeft",
-                        amountLeft,
-                        Color.parseColor("#000000")));
-
-        //Animates the pie chart.
-        pieChart.startAnimation();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        amountSaved = HomeActivity.savings1AmountSaved;
-        amountLeft = HomeActivity.savings1Goal - HomeActivity.savings1AmountSaved;
-        goalPercentage = ((double) amountSaved / (amountSaved + amountLeft)) * 100;
-
-        DecimalFormat df = new DecimalFormat("#.##");
-        String formattedGoalPercentage = df.format(goalPercentage);
-        TextView textViewGoalStatus = findViewById(R.id.textViewGoalStatus);
-        textViewGoalStatus.setText("You are " +  formattedGoalPercentage + "% done.");
-
-        TextView amountLeftTextView = findViewById(R.id.amountLeftTextView);
-        amountLeftTextView.setText("$" +  amountLeft + " left to save out of $" + (amountLeft + amountSaved));
-
-        setData();
+        backButton.setOnClickListener(v -> finish());
     }
 }

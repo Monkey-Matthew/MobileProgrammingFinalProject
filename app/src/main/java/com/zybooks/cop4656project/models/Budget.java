@@ -2,7 +2,6 @@ package com.zybooks.cop4656project.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
@@ -26,9 +25,12 @@ public class Budget {
     @ColumnInfo(name = "auto_savings")
     public boolean autoSavings;
 
+    @ColumnInfo(name = "amount_saved")
+    public double amountSaved;
+
     //constructor
     public Budget(long id, String name, double monthlyIncome, Date currentDate,
-                  double monthlySaveGoal, long savingsType, boolean autoSavings) {
+                  double monthlySaveGoal, long savingsType, boolean autoSavings, double amountSaved) {
         this.id = id;
         this.name = name;
         this.monthlyIncome = monthlyIncome;
@@ -36,6 +38,7 @@ public class Budget {
         this.monthlySaveGoal = monthlySaveGoal;
         this.savingsType = savingsType;
         this.autoSavings = autoSavings;
+        this.amountSaved = amountSaved;
     }
 
     //getters
@@ -45,6 +48,7 @@ public class Budget {
     public double getMonthlySaveGoal() { return monthlySaveGoal; }
     public long getSavingsType() { return savingsType; }
     public boolean getAutoSavings() { return autoSavings; }
+    public double getAmountSaved() { return amountSaved; }
 
     //setters for values that can be changed
     public void setMonthlyIncome(double monthlyIncome) {
@@ -57,4 +61,5 @@ public class Budget {
         this.savingsType = savingsType;
     }
     public void setAutoSavings(boolean autoSavings) { this.autoSavings = autoSavings; }
+    public void setAmountSaved(double amountSaved) { this.amountSaved = amountSaved; }
 }
