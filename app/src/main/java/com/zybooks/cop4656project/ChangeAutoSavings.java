@@ -12,7 +12,7 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class ChangeAutoSavings extends AppCompatActivity {
 
-    private BudgetRepository budgetRepository;
+    private BudgetRepository mbudgetRepo;
     private SwitchCompat autoSavingsSwitch;
 
     @Override
@@ -20,13 +20,13 @@ public class ChangeAutoSavings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_autosavings);
 
-        budgetRepository = new BudgetRepository(getApplication()); // Assuming BudgetRepository handles all DB operations.
+        mbudgetRepo = new BudgetRepository(getApplication()); // Assuming BudgetRepository handles all DB operations.
         autoSavingsSwitch = findViewById(R.id.my_switch);
         Button confirmButton = findViewById(R.id.button_confirm);
         Button backButton = findViewById(R.id.button_back);
 
         // Load current budget's autoSavings state
-        budgetRepository.getBudget().observe(this, budget -> {
+        mbudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 autoSavingsSwitch.setChecked(budget.getAutoSavings());
             }
@@ -47,11 +47,11 @@ public class ChangeAutoSavings extends AppCompatActivity {
         });
     }
     private void updateAutoSavings() {
-        budgetRepository.getBudget().observe(this, budget -> {
+        mbudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 boolean newAutoSavingsState = autoSavingsSwitch.isChecked();
                 budget.setAutoSavings(newAutoSavingsState);
-                budgetRepository.updateAutoSavings(budget);
+                mbudgetRepo.updateAutoSavings(budget);
                 finish();
             } else {
                 Toast.makeText(ChangeAutoSavings.this, "No existing budget found.", Toast.LENGTH_SHORT).show();

@@ -146,11 +146,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="2dp"
                 android:text="$xx.xx left to save out of $xx.xx"
                 android:textColor="@color/BudgetSpent"
                 android:textStyle="bold"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
 
 

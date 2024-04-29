@@ -21,14 +21,13 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 public class SavingsActivity extends AppCompatActivity {
 
     private PieChart pieChart;
-    private BudgetRepository budgetRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.savings);
 
-        budgetRepository = BudgetRepository.getInstance(this);
+        BudgetRepository mbudgetRepo = BudgetRepository.getInstance(this);
         pieChart = findViewById(R.id.savings1piechart);
         TextView textViewGoalStatus = findViewById(R.id.textViewGoalStatus);
         TextView amountLeftTextView = findViewById(R.id.amountLeftTextView);
@@ -36,7 +35,7 @@ public class SavingsActivity extends AppCompatActivity {
         TextView addToSavingstextView = findViewById(R.id.addToSavingsButton);
         TextView removeFromSavingstextView = findViewById(R.id.removeFromSavingsButton);
 
-        budgetRepository.getBudget().observe(this, new Observer<Budget>() {
+        mbudgetRepo.getBudget().observe(this, new Observer<Budget>() {
 
             @Override
             public void onChanged(Budget budget) {

@@ -69,9 +69,25 @@ public class BudgetRepository {
             mBudgetDao.updateMonthlyIncome(budget);
         });
     }
-    public void updateSavings(Budget budget) {
+    public void addSavings(Budget budget, double addedSavings) {
         mDatabaseExecutor.execute(() -> {
-            mBudgetDao.updateSavings(budget);
+            double newSavings = budget.getAmountSaved() + addedSavings;
+            if (newSavings > budget.getMonthlySaveGoal()) {
+                newSavings = budget.getMonthlySaveGoal();
+            }
+            budget.setAmountSaved(newSavings);
+            mBudgetDao.updateAmountSaved(budget);
+        });
+    }
+
+    public void removeSavings(Budget budget, double removedSavings) {
+        mDatabaseExecutor.execute(() -> {
+            double newAmountSaved = budget.getAmountSaved() - removedSavings;
+            if (newAmountSaved < 0) {
+                newAmountSaved = 0;
+            }
+            budget.setAmountSaved(newAmountSaved);
+            mBudgetDao.updateAmountSaved(budget);
         });
     }
 

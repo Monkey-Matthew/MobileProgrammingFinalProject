@@ -12,7 +12,7 @@ import com.zybooks.cop4656project.models.Budget;
 import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class ChangeIncome extends AppCompatActivity {
-    private BudgetRepository mBudgetRepository;
+    private BudgetRepository mBudgetRepo;
     private EditText editText;
 
     @Override
@@ -20,10 +20,10 @@ public class ChangeIncome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_income);
 
-        mBudgetRepository = new BudgetRepository(getApplication());
+        mBudgetRepo = new BudgetRepository(getApplication());
         editText = findViewById(R.id.edit_text_new_budget);
 
-        mBudgetRepository.getBudget().observe(this, budget -> {
+        mBudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 editText.setText(String.valueOf(budget.getMonthlyIncome()));
             }
@@ -36,13 +36,13 @@ public class ChangeIncome extends AppCompatActivity {
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);
 
-        mBudgetRepository.getBudget().observe(this, budget -> {
+        mBudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 applyChangesButton.setOnClickListener(v -> {
                     try {
                         double newIncome = Double.parseDouble(editText.getText().toString());
                         budget.setMonthlyIncome(newIncome); // Update the budget with new income
-                        mBudgetRepository.updateIncome(budget); // Persist the updated budget
+                        mBudgetRepo.updateIncome(budget); // Persist the updated budget
                         Toast.makeText(this, "Monthly income updated.", Toast.LENGTH_SHORT).show();
                         finish();
                     } catch (NumberFormatException e) {

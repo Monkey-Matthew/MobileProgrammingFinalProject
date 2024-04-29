@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
 
-        BudgetRepository budgetRepository = BudgetRepository.getInstance(requireContext());
+        BudgetRepository mbudgetRepo = BudgetRepository.getInstance(requireContext());
 
         pieChart = view.findViewById(R.id.piechart);
         savings1PieChart = view.findViewById(R.id.savings1piechart);
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(requireActivity(), SettingsActivity.class)));
 
 
-        budgetRepository.getBudget().observe(getViewLifecycleOwner(), this::updateUI);
+        mbudgetRepo.getBudget().observe(getViewLifecycleOwner(), this::updateUI);
 
         TextView viewStatementsTextView = view.findViewById(R.id.viewStatementsButton);
         viewStatementsTextView.setOnClickListener(new View.OnClickListener() {

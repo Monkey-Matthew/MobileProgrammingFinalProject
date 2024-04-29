@@ -14,7 +14,7 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class DescribeSavings extends AppCompatActivity {
 
-    private BudgetRepository budgetRepository;
+    private BudgetRepository mbudgetRepo;
     private RadioGroup savingsRadioGroup;
     private Budget currentBudget;
 
@@ -23,14 +23,14 @@ public class DescribeSavings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.describe_saving);
 
-        budgetRepository = new BudgetRepository(getApplication());
+        mbudgetRepo = new BudgetRepository(getApplication());
         savingsRadioGroup = findViewById(R.id.describeSavingsRadioGroup);
         Button confirmButton = findViewById(R.id.button_confirm);
 
-        // Set observer once to avoid multiple observers being set on multiple button clicks
-        budgetRepository.getBudget().observe(this, budget -> {
+
+        mbudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
-                currentBudget = budget; // Store the current budget
+                currentBudget = budget;
             }
         });
 
@@ -38,7 +38,7 @@ public class DescribeSavings extends AppCompatActivity {
             if (currentBudget != null) {
                 int savingsType = getSavingsTypeFromRadioGroup(savingsRadioGroup);
                 currentBudget.setSavingsType(savingsType);
-                budgetRepository.updateSavingHabits(currentBudget);
+                mbudgetRepo.updateSavingHabits(currentBudget);
                 Toast.makeText(DescribeSavings.this, "Savings type updated.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(DescribeSavings.this, "No existing budget found", Toast.LENGTH_SHORT).show();

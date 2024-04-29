@@ -14,7 +14,7 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private BudgetRepository budgetRepository;
+    private BudgetRepository mbudgetRepo;
     private TextView welcomeMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         Button resetButton = findViewById(R.id.button_reset);
         Button backButton = findViewById(R.id.button_back);
 
-        budgetRepository = new BudgetRepository(getApplication());
+       mbudgetRepo = new BudgetRepository(getApplication());
         welcomeMessage = findViewById(R.id.text_welcome_message);
 
         updateWelcomeMessage();
@@ -73,9 +73,9 @@ public class SettingsActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                budgetRepository.getBudget().observe(SettingsActivity.this, budget -> {
+                mbudgetRepo.getBudget().observe(SettingsActivity.this, budget -> {
                     if (budget != null) {
-                        budgetRepository.deleteBudget(budget);
+                        mbudgetRepo.deleteBudget(budget);
 
                         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -94,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
     private void updateWelcomeMessage() {
-        budgetRepository.getBudget().observe(this, budget -> {
+        mbudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null && budget.getName() != null) {
                 welcomeMessage.setText("Welcome, " + budget.getName() + "!");
             } else {

@@ -1,6 +1,9 @@
 package com.zybooks.cop4656project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +15,14 @@ import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class AddToSavings extends AppCompatActivity {
 
-    private BudgetRepository budgetRepository;
+    private BudgetRepository mbudgetRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_tosavings);
 
-        budgetRepository = BudgetRepository.getInstance(this);
+        mbudgetRepo = BudgetRepository.getInstance(this);
 
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);
@@ -45,13 +48,18 @@ public class AddToSavings extends AppCompatActivity {
         });
     }
     private void updateSavings(double addedSavings) {
-        budgetRepository.getBudget().observe(this, budget -> {
-            if (budget != null) {
-                budget.setAmountSaved(budget.getAmountSaved() + addedSavings);
-                budgetRepository.updateAmountSaved(budget);
-                finish();
-            } else {
-                Toast.makeText(this, "No budget found.", Toast.LENGTH_SHORT).show();
+        LiveData<Budget> liveData = mbudgetRepo.getBudget();
+        liveData.observe(this, new Observer<Budget>() {
+            @Override
+            public void onChanged(Budget budget) {
+                if (budget != null) {
+                    mbudgetRepo.addSavings(budget, addedSavings);
+                    liveData.removeObserver(this);
+                    Toast.makeText(AddToSavings.this, "Savings updated successfully!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(AddToSavings.this, "No budget found.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -12,7 +12,7 @@ import com.zybooks.cop4656project.models.Budget;
 import com.zybooks.cop4656project.repo.BudgetRepository;
 
 public class ChangeSavings extends AppCompatActivity {
-    private BudgetRepository mBudgetRepository;
+    private BudgetRepository mBudgetRepo;
     private EditText editText;
 
     @Override
@@ -20,10 +20,10 @@ public class ChangeSavings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_savings);
 
-        mBudgetRepository = new BudgetRepository(getApplication());
+        mBudgetRepo = new BudgetRepository(getApplication());
         editText = findViewById(R.id.edit_text_new_savingsgoal);
 
-        mBudgetRepository.getBudget().observe(this, budget -> {
+        mBudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 editText.setText(String.valueOf(budget.getMonthlySaveGoal()));
             }
@@ -36,13 +36,13 @@ public class ChangeSavings extends AppCompatActivity {
         Button applyChangesButton = findViewById(R.id.button_apply_changes);
         Button backButton = findViewById(R.id.button_back);
 
-        mBudgetRepository.getBudget().observe(this, budget -> {
+        mBudgetRepo.getBudget().observe(this, budget -> {
             if (budget != null) {
                 applyChangesButton.setOnClickListener(v -> {
                     try {
                         double newIncome = Double.parseDouble(editText.getText().toString());
                         budget.setMonthlySaveGoal(newIncome);
-                        mBudgetRepository.updateSavings(budget);
+                        mBudgetRepo.addSavings(budget, 0);
                         Toast.makeText(this, "Monthly general save goal.", Toast.LENGTH_SHORT).show();
                         finish();
                     } catch (NumberFormatException e) {

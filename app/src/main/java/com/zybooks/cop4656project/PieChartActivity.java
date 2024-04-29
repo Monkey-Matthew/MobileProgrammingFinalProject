@@ -19,7 +19,7 @@ public class PieChartActivity extends AppCompatActivity {
 
     private TextView textViewSpent, textViewBudgetLeft;
     private PieChart pieChart;
-    private BudgetRepository budgetRepository;
+    private BudgetRepository mbudgetRepo;
 
 
     @Override
@@ -28,7 +28,7 @@ public class PieChartActivity extends AppCompatActivity {
         setContentView(R.layout.pie_chart);
 
 
-        budgetRepository = BudgetRepository.getInstance(this);
+        mbudgetRepo = BudgetRepository.getInstance(this);
 
 
         textViewSpent = findViewById(R.id.textViewSpent);
@@ -44,7 +44,7 @@ public class PieChartActivity extends AppCompatActivity {
     }
 
     private void loadBudgetData() {
-        budgetRepository.getBudget().observe(this, new Observer<Budget>() {
+        mbudgetRepo.getBudget().observe(this, new Observer<Budget>() {
             @Override
             public void onChanged(Budget budget) {
                 if (budget != null) {
@@ -53,7 +53,6 @@ public class PieChartActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void updateUI(Budget budget) {
         double budgetSpent = budget.getMonthlySaveGoal();
