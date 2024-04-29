@@ -42,7 +42,7 @@ public class SavingsActivity extends AppCompatActivity {
                 if (budget != null) {
                     double savingsGoal = calculateAdjustedGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
                     double amountSaved = budget.getAmountSaved();
-                    double amountLeft = Math.max(0, savingsGoal - amountSaved); // Prevent negative values
+                    double amountLeft = Math.max(0, savingsGoal - amountSaved);
                     double goalPercentage = savingsGoal > 0 ? amountSaved / savingsGoal * 100 : 0;
 
                     DecimalFormat df = new DecimalFormat("#.##");
@@ -72,11 +72,11 @@ public class SavingsActivity extends AppCompatActivity {
     private double calculateAdjustedGoal(double saveGoal, long savingsType) {
         switch ((int) savingsType) {
             case 1: // Aggressive
-                return saveGoal; // Full goal amount considered
+                return saveGoal; //full goal amount considered
             case 2: // Normal
-                return saveGoal * 0.75; // 75% of the goal
+                return saveGoal * 0.75; //75% of the goal
             case 3: // Conservative
-                return saveGoal * 0.5; // 50% of the goal
+                return saveGoal * 0.5; //50% of the goal
             default:
                 return saveGoal; // Default to full goal if type is unknown
         }

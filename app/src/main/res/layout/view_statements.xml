@@ -14,24 +14,22 @@
         android:text="Previous Statements"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:layout_gravity="center"
-        android:gravity="center">
-    </TextView>
+        android:gravity="center" />
 
-    <TextView
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/dark_gray">
-
-    </TextView>
-
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/white"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
 
     <Button
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button_apply_changes"
-        android:layout_marginTop="570dp"
-        android:layout_marginLeft="155dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
         android:text="Back" />
 </LinearLayout>

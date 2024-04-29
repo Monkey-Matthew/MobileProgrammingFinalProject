@@ -14,31 +14,24 @@ public class Transaction {
     @ColumnInfo(name = "date")
     public Date date;
 
-    @ColumnInfo(name = "category_id")
-    public long categoryId;
-
     @ColumnInfo(name = "description")
     public String description;
 
     @ColumnInfo(name = "amount")
     public double amount;
 
-    @ColumnInfo(name = "transaction_type")
-    public String transactionType;
-
-    public Transaction(long id, long categoryId, double amount, Date date, String description, String transactionType) {
-        this.id = id;
-        this.categoryId = categoryId;
+    public Transaction(double amount, Date date, String description) {
         this.amount = amount;
         this.date = date;
         this.description = description;
-        this.transactionType = transactionType;
     }
 
     public long getId() { return id; }
     public Date getDate() { return date; }
-    public long getCategoryId() { return categoryId; }
     public String getDescription() { return description; }
     public double getAmount() { return amount; }
-    public String getTransactionType() { return transactionType; }
+
+    public void setDate(Date date) { this.date = date; }
+    public void setDescription(String Description) { this.description = description; }
+    public void setAmount(double amount) { this.amount = amount; }
 }

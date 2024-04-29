@@ -4,50 +4,59 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InputSpending extends AppCompatActivity {
+import com.zybooks.cop4656project.models.Transaction;
+import com.zybooks.cop4656project.repo.BudgetRepository;
 
-    //New budget amount
-    int newBudgetSpent = HomeActivity.budgetSpent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class InputSpending extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_spendingchoice);
 
-        // Find the EditText for price by its ID
-        EditText editTextPrice = findViewById(R.id.editTextPrice);
+        BudgetRepository mbudgetRepo = BudgetRepository.getInstance(this);
 
+        EditText editTextMemo = findViewById(R.id.editTextMemo);
+        EditText editTextPrice = findViewById(R.id.editTextPrice);
+        EditText editTextDate = findViewById(R.id.editTextDate);
+        Button submitButton = findViewById(R.id.button_submit);
         Button backButton = findViewById(R.id.button_back);
 
-        Button submitButton = findViewById(R.id.button_submit);
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Retrieve the price entered by the user
-                String priceString = editTextPrice.getText().toString();
-
-                //Convert the price string to a double (assuming price is in decimal format)
-                newBudgetSpent = Integer.parseInt(priceString);
-
-                //Update the value of budgetSpent in HomeActivity
-                HomeActivity.budgetSpent = HomeActivity.budgetSpent + newBudgetSpent;
-
-                finish();
-
+        submitButton.setOnClickListener(v -> {
+            String memo = editTextMemo.getText().toString();
+            String dateString = editTextDate.getText().toString();
+            Date date;
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                date = dateFormat.parse(dateString);
+            } catch (ParseException e) {
+                Toast.makeText(InputSpending.this, "Invalid date format. Please use YYYY-MM-DD.", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            double price;
+            try {
+                price = Double.parseDouble(editTextPrice.getText().toString().replace("$", ""));
+            } catch (NumberFormatException e) {
+                Toast.makeText(InputSpending.this, "Invalid amount format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Transaction transaction = new Transaction(price, date, memo);
+            mbudgetRepo.addTransaction(transaction);
+            Toast.makeText(this, "Transaction added successfully", Toast.LENGTH_SHORT).show();
+            finish();
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Finish the current activity and go back to the previous activity
-                finish();
-            }
-        });
-
+        backButton.setOnClickListener(v -> finish());
     }
 }
