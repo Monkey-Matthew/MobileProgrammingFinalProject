@@ -27,7 +27,6 @@ import org.eazegraph.lib.models.PieModel;
 
 public class HomeFragment extends Fragment {
 
-
     private PieChart pieChart;
     private PieChart savings1PieChart;
 
@@ -69,9 +68,9 @@ public class HomeFragment extends Fragment {
 
     private void updateUI(Budget budget) {
         if (budget != null) {
-            double adjustedSaveGoal = calculateSaveGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
+            double adjustedSaveGoal = calculateAdjustedGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
             double budgetLeft = budget.getMonthlyIncome() - adjustedSaveGoal;
-            double savingsLeft = adjustedSaveGoal;
+            double savingsLeft = Math.max(0, adjustedSaveGoal - budget.getAmountSaved());
 
 
             pieChart.clearChart();
@@ -80,24 +79,23 @@ public class HomeFragment extends Fragment {
             pieChart.addPieSlice(new PieModel("Spent", 0, Color.parseColor("#FF5722")));
             pieChart.addPieSlice(new PieModel("Left", (float) budgetLeft, Color.parseColor("#000000")));
 
-            savings1PieChart.addPieSlice(new PieModel("Saved", 0, Color.parseColor("#FF5722")));
+            savings1PieChart.addPieSlice(new PieModel("Saved", (float) budget.getAmountSaved(), Color.parseColor("#FF5722")));
             savings1PieChart.addPieSlice(new PieModel("Goal Left", (float) savingsLeft, Color.parseColor("#000000")));
 
             pieChart.startAnimation();
             savings1PieChart.startAnimation();
         }
     }
-
-    private double calculateSaveGoal(double saveGoal, long savingsType) {
+    private double calculateAdjustedGoal(double saveGoal, long savingsType) {
         switch ((int) savingsType) {
-            case 1: //aggressive
-                return saveGoal * 0.5;
-            case 2: //normal
-                return saveGoal * 0.75;
-            case 3: //conservative
-                return saveGoal;
+            case 1: // Aggressive
+                return saveGoal; // Full goal amount considered
+            case 2: // Normal
+                return saveGoal * 0.75; // 75% of the goal
+            case 3: // Conservative
+                return saveGoal * 0.5; // 50% of the goal
             default:
-                return saveGoal;
+                return saveGoal; // Default to full goal if type is unknown
         }
     }
 }

@@ -36,32 +36,50 @@ public class SavingsActivity extends AppCompatActivity {
         TextView removeFromSavingstextView = findViewById(R.id.removeFromSavingsButton);
 
         mbudgetRepo.getBudget().observe(this, new Observer<Budget>() {
-
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChanged(Budget budget) {
                 if (budget != null) {
+                    double savingsGoal = calculateAdjustedGoal(budget.getMonthlySaveGoal(), budget.getSavingsType());
                     double amountSaved = budget.getAmountSaved();
-                    double savingsGoal = budget.getMonthlySaveGoal();
-                    double amountLeft = (savingsGoal - amountSaved);
-                    double goalPercentage = savingsGoal > 0 ? (double) amountSaved / savingsGoal * 100 : 0;
+                    double amountLeft = Math.max(0, savingsGoal - amountSaved); // Prevent negative values
+                    double goalPercentage = savingsGoal > 0 ? amountSaved / savingsGoal * 100 : 0;
 
                     DecimalFormat df = new DecimalFormat("#.##");
                     String formattedGoalPercentage = df.format(goalPercentage);
 
                     textViewGoalStatus.setText("You are " + formattedGoalPercentage + "% done.");
-                    amountLeftTextView.setText("$" + amountLeft + " left to save out of $" + savingsGoal);
+                    amountLeftTextView.setText("$" + df.format(amountLeft) + " left to save out of $" + df.format(savingsGoal));
 
                     pieChart.clearChart();
                     pieChart.addPieSlice(new PieModel("Amount Saved", (float) amountSaved, Color.parseColor("#FF5722")));
                     pieChart.addPieSlice(new PieModel("Amount Left", (float) amountLeft, Color.parseColor("#000000")));
                     pieChart.startAnimation();
+                } else {
+                    textViewGoalStatus.setText("No budget data available.");
+                    amountLeftTextView.setText("No data available.");
                 }
             }
         });
+
 
         addToSavingstextView.setOnClickListener(v -> startActivity(new Intent(this, AddToSavings.class)));
         removeFromSavingstextView.setOnClickListener(v -> startActivity(new Intent(this, RemoveFromSavings.class)));
 
         backButton.setOnClickListener(v -> finish());
     }
+
+    private double calculateAdjustedGoal(double saveGoal, long savingsType) {
+        switch ((int) savingsType) {
+            case 1: // Aggressive
+                return saveGoal; // Full goal amount considered
+            case 2: // Normal
+                return saveGoal * 0.75; // 75% of the goal
+            case 3: // Conservative
+                return saveGoal * 0.5; // 50% of the goal
+            default:
+                return saveGoal; // Default to full goal if type is unknown
+        }
+    }
+
 }
